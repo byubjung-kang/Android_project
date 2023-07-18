@@ -2,9 +2,15 @@ plugins {
     id 'com.android.application'
 }
 
+
+
 android {
     namespace 'MobileApplication.Group'
     compileSdk 33
+
+    buildFeatures {
+        viewBinding true
+    }
 
     defaultConfig {
         applicationId "MobileApplication.Group"
@@ -41,4 +47,8 @@ dependencies {
     def room_version = "2.5.2"
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
+
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.19'
+    implementation 'com.android.volley:volley:1.2.1'
+
 }
