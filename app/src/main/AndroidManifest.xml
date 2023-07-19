@@ -19,7 +19,7 @@
             android:name=".Theme.AviationStackFlightTracker"
             android:exported="false" />
         <activity
-            android:name=".Theme.BearImageGenerator"
+            android:name=".Theme.BearImageGenerator.BearImageGenerator"
             android:exported="false" />
         <activity
             android:name=".Theme.TriviaQuestionDatabase"

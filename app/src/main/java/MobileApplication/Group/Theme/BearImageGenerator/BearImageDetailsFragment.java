@@ -1,4 +1,4 @@
-package MobileApplication.Group.Theme;
+package MobileApplication.Group.Theme.BearImageGenerator;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,8 +9,8 @@ import androidx.fragment.app.Fragment;
 
 import com.squareup.picasso.Picasso;
 
-import Data.BearImage;
-import MobileApplication.Group.databinding.DetailsLayoutBinding;
+import Data.BearImageGeneratorData.BearImage;
+import MobileApplication.Group.databinding.DetailsBearImageLayoutBinding;
 
 public class BearImageDetailsFragment extends Fragment {
 
@@ -23,7 +23,7 @@ public class BearImageDetailsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        DetailsLayoutBinding binding = DetailsLayoutBinding.inflate(inflater);
+        DetailsBearImageLayoutBinding binding = DetailsBearImageLayoutBinding.inflate(inflater);
 
         binding.databaseText.setText( "Width = " + selected.getWidth() + " Height = " + selected.getHeight());
 

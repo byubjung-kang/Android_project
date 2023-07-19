@@ -1,13 +1,13 @@
-package MobileApplication.Group.Theme;
+package MobileApplication.Group.Theme.BearImageGenerator;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import java.util.ArrayList;
 
-import Data.BearImage;
+import Data.BearImageGeneratorData.BearImage;
 
 public class BearImageViewModel extends ViewModel {
     public MutableLiveData<ArrayList<BearImage>> messages = new MutableLiveData< >();
-    public MutableLiveData<BearImage> selectedMessage = new MutableLiveData<Data.BearImage>();
+    public MutableLiveData<BearImage> selectedMessage = new MutableLiveData<BearImage>();
 }

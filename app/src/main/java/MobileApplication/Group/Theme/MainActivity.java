@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import MobileApplication.Group.R;
+import MobileApplication.Group.Theme.BearImageGenerator.BearImageGenerator;
 
 public class MainActivity extends AppCompatActivity {
 

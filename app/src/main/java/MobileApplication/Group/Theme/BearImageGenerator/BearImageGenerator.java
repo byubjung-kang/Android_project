@@ -1,4 +1,4 @@
-package MobileApplication.Group.Theme;
+package MobileApplication.Group.Theme.BearImageGenerator;
 
 import android.os.Bundle;
 import android.view.View;
@@ -24,17 +24,17 @@ import java.util.ArrayList;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
-import Data.BearImage;
-import Data.BearImageDAO;
-import Data.BearImageDatabase;
+import Data.BearImageGeneratorData.BearImage;
+import Data.BearImageGeneratorData.BearImageDAO;
+import Data.BearImageGeneratorData.BearImageDatabase;
 import MobileApplication.Group.R;
-import MobileApplication.Group.databinding.ActivityImageRoomBinding;
-import MobileApplication.Group.databinding.ImageCardBinding;
+import MobileApplication.Group.databinding.BearImageCardBinding;
+import MobileApplication.Group.databinding.ActivityBearImageRoomBinding;
 
 public class BearImageGenerator extends AppCompatActivity {
 
     @NonNull
-    ActivityImageRoomBinding binding;
+    ActivityBearImageRoomBinding binding;
     private RecyclerView.Adapter myAdapter;
     private int clickpos;
 
@@ -133,7 +133,7 @@ public class BearImageGenerator extends AppCompatActivity {
         }
 
 
-        binding = ActivityImageRoomBinding.inflate(getLayoutInflater());
+        binding = ActivityBearImageRoomBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         ArrayList<BearImage> finalMessages = messages;
@@ -169,8 +169,8 @@ public class BearImageGenerator extends AppCompatActivity {
             @Override
             public MyRowHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-                    ImageCardBinding binding =
-                            ImageCardBinding.inflate(getLayoutInflater(), parent, false);
+                BearImageCardBinding binding =
+                        BearImageCardBinding.inflate(getLayoutInflater(), parent, false);
                     return new MyRowHolder( binding.getRoot() );
 
             }

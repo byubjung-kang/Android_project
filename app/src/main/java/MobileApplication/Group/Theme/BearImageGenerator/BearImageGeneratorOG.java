@@ -1,4 +1,4 @@
-package MobileApplication.Group.Theme;
+package MobileApplication.Group.Theme.BearImageGenerator;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;

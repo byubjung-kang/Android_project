@@ -1,4 +1,4 @@
-package Data;
+package Data.BearImageGeneratorData;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
