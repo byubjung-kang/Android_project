@@ -123,6 +123,7 @@ public class AviationStackFlightTracker extends AppCompatActivity {
                     String gate = flightObject.has("gate") ? flightObject.getString("gate") : "N/A";
                     String delay = flightObject.getJSONObject("departure").optString("delay", "");
 
+
                     FlightMessage flight = new FlightMessage(destination, terminal, gate, delay);
                     flights.add(flight);
                 }
