@@ -1,11 +1,7 @@
 package MobileApplication.Group.Theme;
 
-import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
-import MobileApplication.Group.R;
-import MobileApplication.Group.databinding.ActivityFlightBinding;
-
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -30,14 +27,16 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import MobileApplication.Group.R;
+import MobileApplication.Group.databinding.ActivityFlightBinding;
 
 
-public class AviationStackFlightTracker extends AppCompatActivity {
+public class ChatRoom extends AppCompatActivity {
     private static final String BASE_URL = "http://api.aviationstack.com/v1/flights";
-    private static final String ACCESS_KEY = "88047607053ddc44d85be397fed16b28";
+    private static final String ACCESS_KEY = "4e00a93a77b670e6a78bf754e7b1a8fa";
 
     private EditText airportCodeText;
-    protected ActivityFlightBinding binding;
+
     private ChatRoomViewModel chatModel;
     private ArrayList<FlightMessage> messages;
     private FlightAdapter adapter;
@@ -45,7 +44,7 @@ public class AviationStackFlightTracker extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityFlightBinding.inflate(getLayoutInflater());
+        @NonNull ActivityFlightBinding binding = ActivityFlightBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         chatModel = new ViewModelProvider(this).get(ChatRoomViewModel.class);
@@ -118,10 +117,13 @@ public class AviationStackFlightTracker extends AppCompatActivity {
                 JSONArray data = jsonObject.getJSONArray("data");
                 for (int i = 0; i < data.length(); i++) {
                     JSONObject flightObject = data.getJSONObject(i);
-                    String destination = flightObject.getJSONObject("arrival").getString("iata");
-                    String terminal = flightObject.has("terminal") ? flightObject.getString("terminal") : "N/A";
-                    String gate = flightObject.has("gate") ? flightObject.getString("gate") : "N/A";
-                    String delay = flightObject.getJSONObject("departure").optString("delay", "");
+                    JSONObject departureObject = flightObject.getJSONObject("departure");
+                    JSONObject arrivalObject = flightObject.getJSONObject("arrival");
+
+                    String destination = arrivalObject.getString("airport");
+                    String terminal = departureObject.optString("terminal", "N/A");
+                    String gate = departureObject.optString("gate", "N/A");
+                    String delay = departureObject.optString("delay", "");
 
                     FlightMessage flight = new FlightMessage(destination, terminal, gate, delay);
                     flights.add(flight);
@@ -132,6 +134,10 @@ public class AviationStackFlightTracker extends AppCompatActivity {
 
             return flights;
         }
+
+
+
+
     }
 
     private static class FlightAdapter extends RecyclerView.Adapter<FlightAdapter.FlightViewHolder> {
@@ -172,10 +178,10 @@ public class AviationStackFlightTracker extends AppCompatActivity {
 
             public FlightViewHolder(@NonNull View itemView) {
                 super(itemView);
-                destinationTextView = itemView.findViewById(R.id.Destination);
-                terminalTextView = itemView.findViewById(R.id.Terminal);
-                gateTextView = itemView.findViewById(R.id.Gate);
-                delayTextView = itemView.findViewById(R.id.Delay);
+                destinationTextView = itemView.findViewById(R.id.destinationTextView);
+                terminalTextView = itemView.findViewById(R.id.terminalTextView);
+                gateTextView = itemView.findViewById(R.id.gateTextView);
+                delayTextView = itemView.findViewById(R.id.delayTextView);
             }
         }
     }

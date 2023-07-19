@@ -1,0 +1,30 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/Destination"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Destination : " />
+
+    <TextView
+        android:id="@+id/Terminal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Terminal : " />
+
+    <TextView
+        android:id="@+id/Gate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Gate : " />
+
+    <TextView
+        android:id="@+id/Delay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Delay : " />
+
+</LinearLayout>
