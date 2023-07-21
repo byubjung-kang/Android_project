@@ -3,20 +3,17 @@ package MobileApplication.Group.Theme;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-
-import MobileApplication.Group.R;
 import MobileApplication.Group.databinding.ActivityTriviaQuestionDatabaseBinding;
 
 
 public class TriviaQuestionDatabase extends AppCompatActivity {
-
 
     protected ActivityTriviaQuestionDatabaseBinding binding;
 
@@ -27,20 +24,43 @@ public class TriviaQuestionDatabase extends AppCompatActivity {
         binding = ActivityTriviaQuestionDatabaseBinding.inflate( getLayoutInflater() );
         setContentView( binding.getRoot() );
 
+        SharedPreferences prefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
+        String userName = prefs.getString("UserName", "");
+        binding.uNameText.setText(userName);
+
         binding.playButton.setOnClickListener(clk -> {
 
             String inputUName = binding.uNameText.getText().toString();
 
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putString("UserName", inputUName);
+            editor.apply();
+
             if(checkUNameComplexity(inputUName)) {
 
-                Intent nextPage = new Intent( TriviaQuestionDatabase.this, TriviaQuestionDatabase2.class);
-                nextPage.putExtra("UserName", inputUName);
+                AlertDialog.Builder builder = new AlertDialog.Builder( TriviaQuestionDatabase.this );
+                builder.setMessage("Are you old enough to play game?" )
+                        .setTitle("Question:")
+                        .setNegativeButton("No", (dialog, cl) -> {})
+                        .setPositiveButton("Yes", (dialog, cl) ->{
 
-                startActivity( nextPage );
+
+                            Intent nextPage = new Intent( TriviaQuestionDatabase.this, TriviaQuestionDatabase2.class);
+                            nextPage.putExtra("UserName", inputUName);
+
+                            startActivity( nextPage );
+                        })
+                .create().show();
 
             }else {
 
             }
+        });
+
+        binding.rankButton.setOnClickListener(clk -> {
+
+            Intent nextPage = new Intent( TriviaQuestionDatabase.this, TriviaQuestionRank.class);
+            startActivity( nextPage );
         });
     }
 

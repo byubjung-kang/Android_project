@@ -23,6 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:hint="Enter User Name"
+        android:gravity="center"
         android:textColor="#E33973"
         android:textColorHint="#E33973"
         app:layout_constraintEnd_toEndOf="parent"
@@ -51,6 +52,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/uNameText" />
+
 
 
 
