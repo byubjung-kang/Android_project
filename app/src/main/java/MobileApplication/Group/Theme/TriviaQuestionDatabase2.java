@@ -37,8 +37,8 @@ public class TriviaQuestionDatabase2 extends AppCompatActivity {
     static {
         CATEGORY_URL_MAP.put("geography", "https://opentdb.com/api.php?amount=5&category=22");
         CATEGORY_URL_MAP.put("history", "https://opentdb.com/api.php?amount=5&category=23");
-        CATEGORY_URL_MAP.put("general", "https://opentdb.com/api.php?amount=5&category=23");
-        CATEGORY_URL_MAP.put("celebrities", "https://opentdb.com/api.php?amount=5&category=23");
+        CATEGORY_URL_MAP.put("general", "https://opentdb.com/api.php?amount=5&category=9");
+        CATEGORY_URL_MAP.put("celebrities", "https://opentdb.com/api.php?amount=5&category=26");
     }
     RequestQueue queue = null;
 
