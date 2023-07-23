@@ -1,11 +1,13 @@
 package MobileApplication.Group.Theme;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
 import android.os.Bundle;
+import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,6 +51,7 @@ public class TriviaQuestionRank extends AppCompatActivity {
                 rankingAdapter.submitList(rankItemList);
             });
         }).start();
-    }
 
+
+    }
 }

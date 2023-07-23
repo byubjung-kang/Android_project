@@ -2,6 +2,7 @@ package MobileApplication.Group.Data;
 
 
 import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -9,12 +10,17 @@ import androidx.room.PrimaryKey;
 public class TriviaRanking {
 
     @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name="id")
     private int id;
     @NonNull
+    @ColumnInfo(name="userName")
     private String userName;
+
+    @ColumnInfo(name="score")
     private int score;
 
     @NonNull
+
     public String getUserName() {
 
         return userName;
@@ -26,6 +32,7 @@ public class TriviaRanking {
     }
 
     public int getScore() {
+
         return score;
     }
 

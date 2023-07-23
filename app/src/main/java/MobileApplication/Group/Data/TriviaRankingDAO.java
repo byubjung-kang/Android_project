@@ -32,4 +32,9 @@ public interface TriviaRankingDAO {
     @Query("DELETE FROM TriviaRanking")
     void deleteAll();
 
+    @Query("DELETE FROM TriviaRanking WHERE userName = :userName")
+    void deleteByUserName(String userName);
+
+
+
 }
