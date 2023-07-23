@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -30,7 +31,7 @@ import MobileApplication.Group.R;
 
 public class TriviaQuestionDatabaseFragment extends Fragment {
     private TextView questionText;
-    private Button option1, option2, option3, option4, nextButton;
+    private Button option1, option2, option3, option4, nextButton, backButton;
     private List<TriviaQuestion> questions = new ArrayList<>();
     private int currentQuestionIndex = 0;
     private String url;
@@ -63,8 +64,14 @@ public class TriviaQuestionDatabaseFragment extends Fragment {
         option3 = view.findViewById(R.id.option3);
         option4 = view.findViewById(R.id.option4);
         nextButton = view.findViewById(R.id.nextButton);
+        backButton = view.findViewById(R.id.backButton);
 
         loadQuestions();
+
+        backButton.setOnClickListener(cl -> {
+            Intent intent = new Intent(getActivity(), TriviaQuestionDatabase.class);
+            startActivity( intent );
+        });
 
         View.OnClickListener optionButtonClickListener = new View.OnClickListener() {
             @Override
@@ -75,11 +82,11 @@ public class TriviaQuestionDatabaseFragment extends Fragment {
 
                 if (questions.get(currentQuestionIndex).getCorrectAnswer().equals(clickedOption)) {
 
-                    Toast.makeText(getContext(), "correct answer!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), getString(R.string.correct), Toast.LENGTH_SHORT).show();
                     score += 10;
                 } else {
 
-                    Toast.makeText(getContext(), "wrong answer.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), getString(R.string.wrong), Toast.LENGTH_SHORT).show();
                 }
 
 
@@ -108,7 +115,11 @@ public class TriviaQuestionDatabaseFragment extends Fragment {
             }
         });
         return view;
+
+
     }
+
+
 
     private void loadQuestions() {
         RequestQueue queue = Volley.newRequestQueue(getContext());

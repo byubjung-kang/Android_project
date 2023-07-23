@@ -27,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:text="Category"
+            android:text="@string/category"
             android:textColor="@color/black"
             android:textSize="34sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -45,7 +45,6 @@
         android:layout_marginEnd="50dp"
         android:columnCount="2"
         android:rowCount="2"
-
         app:layout_constraintBottom_toBottomOf="@+id/conLayout"
         app:layout_constraintEnd_toEndOf="@+id/conLayout"
         app:layout_constraintStart_toStartOf="@+id/conLayout"
@@ -69,7 +68,7 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    android:text="Geography"
+                    android:text="@string/geography"
                     android:gravity="center"
                     android:textColor="#F8A3C0"
                     android:background="@color/black"/>
@@ -94,7 +93,7 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    android:text="History"
+                    android:text="@string/history"
                     android:gravity="center"
                     android:textColor="#F8A3C0"
                     android:background="@color/black"/>
@@ -119,7 +118,7 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    android:text="General Knowledge"
+                    android:text="@string/general"
                     android:gravity="center"
                     android:textColor="#F8A3C0"
                     android:background="@color/black"/>
@@ -144,7 +143,7 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    android:text="Celebrities"
+                    android:text="@string/celebrities"
                     android:gravity="center"
                     android:textColor="#F8A3C0"
                     android:background="@color/black"/>
@@ -157,7 +156,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="User Name"
+        android:text="@string/player"
         android:textSize="20sp"
         android:textColor="#E33973"
         app:layout_constraintEnd_toEndOf="parent"

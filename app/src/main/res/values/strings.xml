@@ -1,3 +1,41 @@
 <resources>
-    <string name="app_name">Android Project</string>
+    <string name="app_name">4 in 1 app</string>
+    <string name="play">Play</string>
+    <string name="rank">rank</string>
+    <string name="name">Enter user name</string>
+    <string name="warn">Warning:</string>
+    <string name="warnMessage">Are you old enough to play this game?:</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="player">Player :</string>
+    <string name="category">Category</string>
+    <string name="geography">Geography</string>
+    <string name="history">History</string>
+    <string name="general">General Knowledge</string>
+    <string name="celebrities">Celebrities</string>
+    <string name="back">Back</string>
+    <string name="next">Next</string>
+    <string name="cong">Congratulations</string>
+    <string name="score">Your Score</string>
+    <string name="great">You did great job, Lean more by taking another quiz</string>
+    <string name="backToMain">Back to main</string>
+    <string name="checkRank">Check Ranking</string>
+    <string name="valiUpper">User Name must contain an uppercase letter</string>
+    <string name="valiLower">User Name must contain an lowercase letter</string>
+    <string name="valiLetter">Letter Only</string>
+    <string name="okay">got it!</string>
+    <string name="tuto">Tutorial:</string>
+    <string name="tutoMsg">Welcome to Trivia Quiz Game! Here is how to play:
+        \n1. Enter your username and click Play button.
+        \n2. Choose a category for your quiz.
+        \n3. You will be presented with a series of questions. Click on the option that you think is correct.
+        \n4. Your score will be updated as you answer each question.
+        \n5. At the end of the quiz, your total score will be displayed.
+        \n6. You can view the leaderboard by clicking on Rank button.
+        \nEnjoy the game!</string>
+    <string name="wrong">wrong answer!</string>
+    <string name="correct">correct answer!</string>
+    <string name="help">Help</string>
+
+
 </resources>

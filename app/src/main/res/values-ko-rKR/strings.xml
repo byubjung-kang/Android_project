@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">앱하나에 4개들음</string>
+    <string name="play">시작하기</string>
+    <string name="rank">랭킹</string>
+    <string name="name">유저이름을 쓰세요</string>
+    <string name="warn">경고 :</string>
+    <string name="warnMessage">떡국좀 먹었냐</string>
+    <string name="yes">오키</string>
+    <string name="no">노노</string>
+    <string name="player">플레이어 :</string>
+    <string name="category">카테고리</string>
+    <string name="geography">지리</string>
+    <string name="history">역사</string>
+    <string name="general">공통</string>
+    <string name="celebrities">셀럽</string>
+    <string name="back">뒤로가기</string>
+    <string name="next">다음</string>
+    <string name="cong">축하합니다</string>
+    <string name="score">니점수</string>
+    <string name="great">잘했는데 더배워 광고나와</string>
+    <string name="backToMain">메인으로 가기</string>
+    <string name="valiUpper">대문자가 포함돼야해</string>
+    <string name="valiLower">소문자가 포함돼야해</string>
+    <string name="valiLetter">글자만써</string>
+    <string name="okay">알쪄</string>
+    <string name="tuto">사용법:</string>
+    <string name="tutoMsg">퀴즈겜에 온걸 환영해 사용법은 이거야 1. 버튼 막갈겨 2. 즐겨 3. 광고 많이 봐줘 4. 이앱 오래오래 써줘</string>
+    <string name="checkRank">랭킹보기</string>
+    <string name="help">도움</string>
+    <string name="wrong">틀렸어!</string>
+    <string name="correct">맞았어!</string>
+</resources>

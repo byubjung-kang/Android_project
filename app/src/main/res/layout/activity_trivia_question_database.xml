@@ -6,23 +6,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Theme.TriviaQuestionDatabase"
-    android:background="@color/black" >
+    android:background="@color/black">
 
 
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/gifImageView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="413dp"
+        android:layout_height="365dp"
         android:adjustViewBounds="false"
         android:src="@drawable/giphy"
+        app:layout_constraintTop_toBottomOf="@+id/toolBar"
         tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/uNameText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:hint="Enter User Name"
+        android:layout_marginTop="10dp"
+        android:hint="@string/name"
         android:gravity="center"
         android:textColor="#E33973"
         android:textColorHint="#E33973"
@@ -37,7 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:background="@drawable/rectangle_button2"
-        android:text="Rank"
+        android:text="@string/rank"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/playButton" />
@@ -48,11 +49,17 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:background="@drawable/rectangle_button2"
-        android:text="Play"
+        android:text="@string/play"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/uNameText" />
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 

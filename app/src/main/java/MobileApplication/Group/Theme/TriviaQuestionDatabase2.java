@@ -83,16 +83,14 @@ public class TriviaQuestionDatabase2 extends AppCompatActivity {
 
         Intent fromPrevious = getIntent();
         String userName = fromPrevious.getStringExtra("UserName");
-        binding.uNameText2.setText("Player : " + userName);
+        binding.uNameText2.setText(getString(R.string.player) + userName);
     };
 
     private void showQuizFragment(String category) {
 
         String url = CATEGORY_URL_MAP.get(category);
 
-
         TriviaQuestionDatabaseFragment quizFragment = TriviaQuestionDatabaseFragment.newInstance(url);
-
 
         getSupportFragmentManager()
                 .beginTransaction()

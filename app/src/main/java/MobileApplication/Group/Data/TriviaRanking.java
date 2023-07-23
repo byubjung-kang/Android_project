@@ -10,19 +10,18 @@ public class TriviaRanking {
 
     @PrimaryKey(autoGenerate = true)
     private int id;
-
     @NonNull
     private String userName;
-
     private int score;
-
 
     @NonNull
     public String getUserName() {
+
         return userName;
     }
 
     public void setUserName(@NonNull String userName) {
+
         this.userName = userName;
     }
 
@@ -31,14 +30,17 @@ public class TriviaRanking {
     }
 
     public void setScore(int score) {
+
         this.score = score;
     }
 
     public int getId() {
+
         return id;
     }
 
     public void setId(int id) {
+
         this.id = id;
     }
 }

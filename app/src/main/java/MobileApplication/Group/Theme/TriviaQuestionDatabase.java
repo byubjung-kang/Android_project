@@ -1,5 +1,6 @@
 package MobileApplication.Group.Theme;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 
@@ -8,8 +9,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 
+import MobileApplication.Group.R;
 import MobileApplication.Group.databinding.ActivityTriviaQuestionDatabaseBinding;
 
 
@@ -17,12 +21,15 @@ public class TriviaQuestionDatabase extends AppCompatActivity {
 
     protected ActivityTriviaQuestionDatabaseBinding binding;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         binding = ActivityTriviaQuestionDatabaseBinding.inflate( getLayoutInflater() );
         setContentView( binding.getRoot() );
+
+        setSupportActionBar(binding.toolBar);
 
         SharedPreferences prefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
         String userName = prefs.getString("UserName", "");
@@ -39,10 +46,13 @@ public class TriviaQuestionDatabase extends AppCompatActivity {
             if(checkUNameComplexity(inputUName)) {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder( TriviaQuestionDatabase.this );
-                builder.setMessage("Are you old enough to play game?" )
-                        .setTitle("Question:")
-                        .setNegativeButton("No", (dialog, cl) -> {})
-                        .setPositiveButton("Yes", (dialog, cl) ->{
+
+
+
+                builder.setMessage(getString(R.string.warnMessage))
+                        .setTitle(getString(R.string.warn))
+                        .setNegativeButton(getString(R.string.no), (dialog, cl) -> {})
+                        .setPositiveButton(getString(R.string.yes), (dialog, cl) ->{
 
 
                             Intent nextPage = new Intent( TriviaQuestionDatabase.this, TriviaQuestionDatabase2.class);
@@ -64,6 +74,45 @@ public class TriviaQuestionDatabase extends AppCompatActivity {
         });
     }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        super.onOptionsItemSelected(item);
+
+        if( item.getItemId() == R.id.t_item1 ) {
+            Intent intent = new Intent(TriviaQuestionDatabase.this, AviationStackFlightTracker.class);
+            startActivity( intent );
+
+
+        }else if( item.getItemId() == R.id.t_item2 ) {
+            Intent intent = new Intent(TriviaQuestionDatabase.this, CurrencyConverter.class);
+            startActivity( intent );
+
+        } else if ( item.getItemId() == R.id.t_item3 ) {
+            Intent intent = new Intent(TriviaQuestionDatabase.this, BearImageGenerator.class);
+            startActivity( intent );
+
+        } else {
+            AlertDialog.Builder builder = new AlertDialog.Builder( TriviaQuestionDatabase.this );
+            builder.setTitle(getString(R.string.tuto))
+                    .setMessage(getString(R.string.tutoMsg) )
+                    .setPositiveButton(getString(R.string.okay), (dialog, clk) -> {
+
+                    })
+                    .create().show();
+
+        }
+
+
+        return true;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.my_menu, menu);
+        return true;
+    }
+
     boolean checkUNameComplexity(String inputUName) {
         boolean foundUpperCase, foundLowerCase, foundNumber, foundSpecial;
         foundUpperCase  = foundLowerCase = foundNumber = foundSpecial  = false;
@@ -83,13 +132,13 @@ public class TriviaQuestionDatabase extends AppCompatActivity {
         }
 
         if (!foundUpperCase) {
-            Toast.makeText(this, "User Name must contain an uppercase letter", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.valiUpper), Toast.LENGTH_SHORT).show();
             return false;
         } else if (!foundLowerCase) {
-            Toast.makeText(this, "User Name must contain an lowercase letter", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.valiLower), Toast.LENGTH_SHORT).show();
             return false;
         }else if (foundNumber || foundSpecial){
-            Toast.makeText(this, "Letter Only", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.valiLetter), Toast.LENGTH_SHORT).show();
             return false;
         }
 

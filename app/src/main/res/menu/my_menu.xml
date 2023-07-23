@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/t_item4"
+        android:title="@string/help"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/t_item1"
+        android:icon="@drawable/flight"
+        android:title="flight"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/t_item2"
+        android:icon="@drawable/currency"
+        android:title="currency"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/t_item3"
+        android:icon="@drawable/bear"
+        android:title="bear"
+        app:showAsAction="always" />
+</menu>
