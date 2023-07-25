@@ -36,7 +36,6 @@ public class BearImageGenerator extends AppCompatActivity {
     @NonNull
     ActivityBearImageRoomBinding binding;
     private RecyclerView.Adapter myAdapter;
-    private int clickpos;
 
 
     @Override
