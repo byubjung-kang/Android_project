@@ -1,23 +1,46 @@
-<?xml version="1.0" encoding="utf-8"?>
+<!-- activity_flight_details.xml -->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/my_primary">
 
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
+    <!-- Define your TextViews for displaying flight details here -->
+    <TextView
+        android:id="@+id/Destination"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:layout_marginTop="32dp"
+        android:layout_marginStart="32dp"
+        android:text="Destination : "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/airlineNameTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="18sp" />
+    <TextView
+        android:id="@+id/Terminal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Terminal : "
+        app:layout_constraintStart_toStartOf="@+id/Destination"
+        app:layout_constraintTop_toBottomOf="@+id/Destination" />
 
-        <!-- Add any other flight details you want to display here -->
+    <TextView
+        android:id="@+id/Gate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Gate : "
+        app:layout_constraintStart_toStartOf="@+id/Terminal"
+        app:layout_constraintTop_toBottomOf="@+id/Terminal" />
 
-    </LinearLayout>
+    <TextView
+        android:id="@+id/Delay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Delay : "
+        app:layout_constraintStart_toStartOf="@+id/Gate"
+        app:layout_constraintTop_toBottomOf="@+id/Gate" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
