@@ -1,5 +1,10 @@
 package MobileApplication.Group.Theme.BearImageGenerator;
 
+import android.app.Activity;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,9 +24,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.ImageRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -30,6 +43,7 @@ import Data.BearImageGeneratorData.BearImage;
 import Data.BearImageGeneratorData.BearImageDAO;
 import Data.BearImageGeneratorData.BearImageDatabase;
 import MobileApplication.Group.R;
+import MobileApplication.Group.Theme.MainActivity;
 import MobileApplication.Group.databinding.BearImageCardBinding;
 import MobileApplication.Group.databinding.ActivityBearImageRoomBinding;
 
@@ -40,12 +54,17 @@ public class BearImageGenerator extends AppCompatActivity {
     private RecyclerView.Adapter myAdapter;
     ArrayList<BearImage> images;
     int positionDel;
+    RequestQueue queue = null;
+    Bitmap image;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //This part goes at the top of the onCreate function:
+        queue = Volley.newRequestQueue(this);
 
         BearImageDatabase db = Room.databaseBuilder(getApplicationContext(), BearImageDatabase.class, "database-name").build();
         BearImageDAO mDAO = db.cmDAO();
@@ -145,15 +164,65 @@ public class BearImageGenerator extends AppCompatActivity {
             String height = binding.textInput2.getText().toString();
             boolean type = false;
 
-            BearImage newImage = new BearImage(input, height, type);
+//            BearImage newImage = new BearImage(input, height, type);
+//
+//            Executor thread = Executors.newSingleThreadExecutor();
+//            thread.execute( () -> {
+//                newImage.id = mDAO.insertImage(newImage);
+//            });
+//
+//            images.add(newImage);
+//            myAdapter.notifyItemInserted(images.size()-1);
 
-            Executor thread = Executors.newSingleThreadExecutor();
-            thread.execute( () -> {
-                newImage.id = mDAO.insertImage(newImage);
-            });
+            String imageUrl = "https://placebear.com/"+ input +"/"+ height;
+//            String pathname = getFilesDir() + "/" + input +"+"+height;
+//            File file = new File(pathname);
 
-            images.add(newImage);
-            myAdapter.notifyItemInserted(images.size()-1);
+//            if(file.exists()) {
+//                image = BitmapFactory.decodeFile(pathname);
+//            } else {
+                ImageRequest imgReq = new ImageRequest(imageUrl, new Response.Listener<Bitmap>() {
+                    @Override
+                    public void onResponse(Bitmap bitmap) {
+                        try {
+                            image = bitmap;
+                            image.compress(Bitmap.CompressFormat.PNG, 100, BearImageGenerator.this.openFileOutput(input+height, Activity.MODE_PRIVATE));
+                        }
+                        catch(Exception e) {
+
+                        }
+                    }
+                }, 1024, 1024,ImageView.ScaleType.CENTER, null,
+                        (error) -> { });
+//            }
+            queue.add(imgReq);
+
+
+
+//            ImageRequest imgReq = new ImageRequest(imageUrl, new Response.Listener<Bitmap>() {
+//                @Override
+//                public void onResponse(Bitmap bitmap) {
+//                    // Do something with loaded bitmap...
+//                    FileOutputStream fOut = null;
+//                    try {
+//                        fOut = openFileOutput( input+"X"+height + ".png", Context.MODE_PRIVATE);
+//
+//                        bitmap.compress(Bitmap.CompressFormat.PNG, 100, fOut);
+//                        fOut.flush();
+//                        fOut.close();
+//                    } catch (FileNotFoundException e) {
+//                        e.printStackTrace();
+//                    } catch (IOException e) {
+//                        throw new RuntimeException(e);
+//                    }
+//                    int i = 10;
+//                }
+//            }, 1024, 1024, ImageView.ScaleType.CENTER, null,
+//                    (error ) -> {
+//                int i = 0;
+//            });
+//            queue.add(imgReq);
+
             binding.textInput.setText("");
             binding.textInput2.setText("");
 
