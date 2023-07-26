@@ -1,5 +1,10 @@
 <resources>
-    <string name="app_name">Jeonghyeon\'s Android Labs</string>
+    <string name="app_name">Bear Image Generator</string>
     <string name="hello_message">Hello world!</string>
     <string name="button_message">LOGIN</string>
+    <string name="generateButton">Generate</string>
+    <string name="textView2">Width</string>
+    <string name="textView3">Height</string>
+    <string name="item_2">Help</string>
+
 </resources>

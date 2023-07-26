@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">곰 이미지 생성기</string>
+    <string name="hello_message">안녕!</string>
+    <string name="button_message">로그인</string>
+    <string name="generateButton">생성</string>
+    <string name="textView2">넓이</string>
+    <string name="textView3">길이</string>
+    <string name="item_2">도움말</string>
+</resources>

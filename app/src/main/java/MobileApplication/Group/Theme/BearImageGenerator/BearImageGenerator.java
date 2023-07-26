@@ -1,6 +1,8 @@
 package MobileApplication.Group.Theme.BearImageGenerator;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -36,21 +38,24 @@ public class BearImageGenerator extends AppCompatActivity {
     @NonNull
     ActivityBearImageRoomBinding binding;
     private RecyclerView.Adapter myAdapter;
+    ArrayList<BearImage> images;
+    int positionDel;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
         BearImageDatabase db = Room.databaseBuilder(getApplicationContext(), BearImageDatabase.class, "database-name").build();
         BearImageDAO mDAO = db.cmDAO();
 
         //        ArrayList<String> messages = new ArrayList<>();
-        BearImageViewModel chatModel ;
-        chatModel = new ViewModelProvider(this).get(BearImageViewModel.class);
-        chatModel.selectedMessage.observe(this, newMessage -> {
+        BearImageViewModel imageModel ;
+        imageModel = new ViewModelProvider(this).get(BearImageViewModel.class);
+        imageModel.selectedImage.observe(this, newMessage -> {
 
-            chatModel.selectedMessage.observe(this, (newValue) -> {
+            imageModel.selectedImage.observe(this, (newValue) -> {
                 BearImageDetailsFragment chatFragment = new BearImageDetailsFragment(newValue);
                 FragmentManager fMgr = getSupportFragmentManager();
 
@@ -63,25 +68,22 @@ public class BearImageGenerator extends AppCompatActivity {
 
         });
 
-        ArrayList<BearImage> messages;
-        messages = chatModel.messages.getValue();
+        images = imageModel.images.getValue();
 
-        if(messages == null)
+        if(images == null)
         {
-            chatModel.messages.postValue( messages = new ArrayList<BearImage>());
+            imageModel.images.postValue( images = new ArrayList<BearImage>());
 
             Executor thread = Executors.newSingleThreadExecutor();
-            ArrayList<BearImage> finalMessages2 = messages;
             thread.execute(() ->
             {
-                finalMessages2.addAll( mDAO.getAllImages() ); //Once you get the data from database
+                images.addAll( mDAO.getAllImages() ); //Once you get the data from database
 
                 runOnUiThread( () ->  binding.recycleView.setAdapter( myAdapter )); //You can then load the RecyclerView
             });
         }
 
 
-        ArrayList<BearImage> finalMessages3 = messages;
         class MyRowHolder extends RecyclerView.ViewHolder {
             TextView messageText;
 //            TextView timeText;
@@ -94,22 +96,22 @@ public class BearImageGenerator extends AppCompatActivity {
 
                 itemView.setOnLongClickListener(clk -> {
                     int position = getAbsoluteAdapterPosition();
-                    builder.setMessage( "Do you want to delete the message: " + messageText.getText() )
+                    builder.setMessage( "Do you want to delete the iamge: " + messageText.getText() )
                     .setTitle( "Question:" )
                     .setNegativeButton("No", (dialog, cl) -> { })
                     .setPositiveButton("Yes", (dialog, cl) -> {
 
-                        BearImage m = finalMessages3.get(position);
+                        BearImage m = images.get(position);
 
                         Executor thread = Executors.newSingleThreadExecutor();
                         thread.execute( () -> {
                             mDAO.deleteMessage( m );
-                            finalMessages3.remove(position);
+                            images.remove(position);
                             runOnUiThread(() -> { myAdapter.notifyItemRemoved(position); });
                         });
                         Snackbar.make(messageText, "You deleted message #"+ position, Snackbar.LENGTH_LONG)
                                 .setAction("Undo", c -> {
-                                    finalMessages3.add(position, m);
+                                    images.add(position, m);
                                     myAdapter.notifyItemInserted(position);
                                 })
                                 .show();
@@ -119,10 +121,10 @@ public class BearImageGenerator extends AppCompatActivity {
                 });
 
                 itemView.setOnClickListener(clk -> {
-                    int index = getAbsoluteAdapterPosition();
-                    BearImage selectedMessage = finalMessages3.get(index);
+                    positionDel = getAbsoluteAdapterPosition();
+                    BearImage selectedMessage = images.get(positionDel);
 
-                    chatModel.selectedMessage.postValue( finalMessages3.get(index) );
+                    imageModel.selectedImage.postValue( images.get(positionDel) );
 
                 });
 
@@ -135,7 +137,8 @@ public class BearImageGenerator extends AppCompatActivity {
         binding = ActivityBearImageRoomBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        ArrayList<BearImage> finalMessages = messages;
+        //this loads the toolbar, in onCreateOptionsMenu
+        setSupportActionBar(binding.myToolbar);
 
         binding.generateButton.setOnClickListener(click -> {
             String input = binding.textInput.getText().toString();
@@ -149,8 +152,8 @@ public class BearImageGenerator extends AppCompatActivity {
                 newImage.id = mDAO.insertImage(newImage);
             });
 
-            finalMessages.add(newImage);
-            myAdapter.notifyItemInserted(finalMessages.size()-1);
+            images.add(newImage);
+            myAdapter.notifyItemInserted(images.size()-1);
             binding.textInput.setText("");
             binding.textInput2.setText("");
 
@@ -161,8 +164,6 @@ public class BearImageGenerator extends AppCompatActivity {
             toast.show();
         });
 
-
-        ArrayList<BearImage> finalMessages1 = messages;
         binding.recycleView.setAdapter(myAdapter = new RecyclerView.Adapter<MyRowHolder>() {
             @NonNull
             @Override
@@ -177,7 +178,7 @@ public class BearImageGenerator extends AppCompatActivity {
             @Override
             public void onBindViewHolder(@NonNull MyRowHolder holder, int position) {
                 holder.messageText.setText("");
-                BearImage obj = finalMessages1.get(position);
+                BearImage obj = images.get(position);
                 holder.messageText.setText(obj.getWidth() +"X"+ obj.getHeight() + " Bear Imaage");
                 String url = obj.getUrl();
                 Picasso.get().load(url).into(holder.imageView);
@@ -186,12 +187,12 @@ public class BearImageGenerator extends AppCompatActivity {
 
             @Override
             public int getItemCount() {
-                return finalMessages1.size();
+                return images.size();
             }
 
             @Override
             public int getItemViewType(int position){
-                BearImage obj = finalMessages1.get(position);
+                BearImage obj = images.get(position);
                 if (obj.getIsSentButton() == true)
                     return 1;
                 else
@@ -199,16 +200,71 @@ public class BearImageGenerator extends AppCompatActivity {
             }
 
 
-
-
-
-
-
         });
 
         binding.recycleView.setLayoutManager(new LinearLayoutManager(this));
+    }
 
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        super.onOptionsItemSelected(item);
+
+        BearImageDatabase db = Room.databaseBuilder(getApplicationContext(), BearImageDatabase.class, "database-name").build();
+        BearImageDAO mDAO = db.cmDAO();
+        BearImageViewModel chatModel ;
+        chatModel = new ViewModelProvider(this).get(BearImageViewModel.class);
+
+
+        if( item.getItemId() == R.id.item_1 ) {
+
+
+
+            AlertDialog.Builder builder = new AlertDialog.Builder( BearImageGenerator.this );
+
+            builder.setMessage( "Do you want to delete the image: " )
+                    .setTitle( "Question:" )
+                    .setNegativeButton("No", (dialog, cl) -> { })
+                    .setPositiveButton("Yes", (dialog, cl) -> {
+
+                        BearImage m = images.get(positionDel);
+
+                        Executor thread = Executors.newSingleThreadExecutor();
+                        thread.execute( () -> {
+                            mDAO.deleteMessage( m );
+                            images.remove(positionDel);
+                            runOnUiThread(() -> { myAdapter.notifyItemRemoved(positionDel); });
+                        });
+//                        Snackbar.make(messageText, "You deleted message #"+ positionDel, Snackbar.LENGTH_LONG)
+//                                .setAction("Undo", c -> {
+//                                    messages.add(positionDel, m);
+//                                    myAdapter.notifyItemInserted(positionDel);
+//                                })
+//                                .show();
+
+                    })
+                    .create().show();
+
+        } else if( item.getItemId() == R.id.item_2 ) {
+            AlertDialog.Builder builder = new AlertDialog.Builder( BearImageGenerator.this );
+
+            builder.setMessage( "Please input the Width and Height to generate the bear image! " )
+                    .setTitle( "Help:" )
+                    .create().show();
+
+        }
+
+        return true;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+
+        //inflate the menu
+        getMenuInflater().inflate( R.menu.my_menu, menu);
+
+        return true;
     }
 
 

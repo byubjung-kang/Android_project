@@ -8,6 +8,6 @@ import java.util.ArrayList;
 import Data.BearImageGeneratorData.BearImage;
 
 public class BearImageViewModel extends ViewModel {
-    public MutableLiveData<ArrayList<BearImage>> messages = new MutableLiveData< >();
-    public MutableLiveData<BearImage> selectedMessage = new MutableLiveData<BearImage>();
+    public MutableLiveData<ArrayList<BearImage>> images = new MutableLiveData< >();
+    public MutableLiveData<BearImage> selectedImage = new MutableLiveData<BearImage>();
 }

@@ -13,31 +13,31 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-
-            <!--            <Button-->
-<!--                android:id="@+id/sendButton"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="SEND"-->
-<!--                app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent" />-->
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycleView"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/myToolbar"
+                app:layout_constraintBottom_toTopOf="@+id/textInput"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/myToolbar"
                 app:layout_constraintVertical_bias="0.0" />
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/myToolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/generateButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="RECEIVE"
+                android:text="@string/generateButton"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
@@ -65,7 +65,7 @@
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Width"
+                android:text="@string/textView2"
                 android:textSize="18dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -75,7 +75,7 @@
                 android:id="@+id/textView3"
                 android:layout_width="0dp"
                 android:layout_height="28dp"
-                android:text="Height"
+                android:text="@string/textView3"
                 android:textSize="18dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/textInput2"
@@ -89,9 +89,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0">
-            </FrameLayout>
+                app:layout_constraintTop_toBottomOf="@+id/myToolbar"
+                app:layout_constraintVertical_bias="1.0"></FrameLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
