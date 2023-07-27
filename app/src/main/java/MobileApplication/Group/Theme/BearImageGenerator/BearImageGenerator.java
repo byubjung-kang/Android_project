@@ -2,6 +2,7 @@ package MobileApplication.Group.Theme.BearImageGenerator;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.Image;
@@ -43,7 +44,10 @@ import Data.BearImageGeneratorData.BearImage;
 import Data.BearImageGeneratorData.BearImageDAO;
 import Data.BearImageGeneratorData.BearImageDatabase;
 import MobileApplication.Group.R;
+import MobileApplication.Group.Theme.AviationStackFlightTracker;
+import MobileApplication.Group.Theme.CurrencyConverter;
 import MobileApplication.Group.Theme.MainActivity;
+import MobileApplication.Group.Theme.TriviaQuestionDatabase;
 import MobileApplication.Group.databinding.BearImageCardBinding;
 import MobileApplication.Group.databinding.ActivityBearImageRoomBinding;
 
@@ -105,7 +109,6 @@ public class BearImageGenerator extends AppCompatActivity {
 
         class MyRowHolder extends RecyclerView.ViewHolder {
             TextView messageText;
-//            TextView timeText;
             ImageView imageView;
 
             public MyRowHolder(@NonNull View itemView) {
@@ -115,7 +118,7 @@ public class BearImageGenerator extends AppCompatActivity {
 
                 itemView.setOnLongClickListener(clk -> {
                     int position = getAbsoluteAdapterPosition();
-                    builder.setMessage( "Do you want to delete the iamge: " + messageText.getText() )
+                    builder.setMessage( "Do you want to delete the image: " + messageText.getText() )
                     .setTitle( "Question:" )
                     .setNegativeButton("No", (dialog, cl) -> { })
                     .setPositiveButton("Yes", (dialog, cl) -> {
@@ -164,64 +167,44 @@ public class BearImageGenerator extends AppCompatActivity {
             String height = binding.textInput2.getText().toString();
             boolean type = false;
 
-//            BearImage newImage = new BearImage(input, height, type);
-//
-//            Executor thread = Executors.newSingleThreadExecutor();
-//            thread.execute( () -> {
-//                newImage.id = mDAO.insertImage(newImage);
-//            });
-//
-//            images.add(newImage);
-//            myAdapter.notifyItemInserted(images.size()-1);
+            BearImage newImage = new BearImage(input, height, type);
 
-            String imageUrl = "https://placebear.com/"+ input +"/"+ height;
-//            String pathname = getFilesDir() + "/" + input +"+"+height;
-//            File file = new File(pathname);
+            Executor thread = Executors.newSingleThreadExecutor();
+            thread.execute( () -> {
+                newImage.id = mDAO.insertImage(newImage);
+            });
 
-//            if(file.exists()) {
-//                image = BitmapFactory.decodeFile(pathname);
-//            } else {
+            images.add(newImage);
+            myAdapter.notifyItemInserted(images.size()-1);
+
+            String pathname = getFilesDir() + "/" + input + "X" + height + ".png";
+            File file = new File(pathname);
+            if (file.exists()) {
+                image = BitmapFactory.decodeFile(pathname);
+            } else {
+                String imageUrl = "https://placebear.com/" + input + "/" + height;
                 ImageRequest imgReq = new ImageRequest(imageUrl, new Response.Listener<Bitmap>() {
                     @Override
                     public void onResponse(Bitmap bitmap) {
                         try {
                             image = bitmap;
-                            image.compress(Bitmap.CompressFormat.PNG, 100, BearImageGenerator.this.openFileOutput(input+height, Activity.MODE_PRIVATE));
-                        }
-                        catch(Exception e) {
-
+                            image.compress(Bitmap.CompressFormat.PNG, 100, BearImageGenerator.this.openFileOutput(input + "X" + height+".png", BearImageGenerator.MODE_PRIVATE));
+                            runOnUiThread( (  )  -> {
+//                                binding.imageView2.setImageBitmap(bitmap);
+//                                binding.imageView.setVisibility(View.VISIBLE);
+                            });
+                            int i = 10;
+                        } catch (Exception e) {
+                            int i = 0;
+                            e.printStackTrace();
                         }
                     }
-                }, 1024, 1024,ImageView.ScaleType.CENTER, null,
-                        (error) -> { });
-//            }
-            queue.add(imgReq);
+                }, 1024, 1024, ImageView.ScaleType.CENTER, null,
+                        (error) -> {
+                        });
+                queue.add(imgReq);
+            }
 
-
-
-//            ImageRequest imgReq = new ImageRequest(imageUrl, new Response.Listener<Bitmap>() {
-//                @Override
-//                public void onResponse(Bitmap bitmap) {
-//                    // Do something with loaded bitmap...
-//                    FileOutputStream fOut = null;
-//                    try {
-//                        fOut = openFileOutput( input+"X"+height + ".png", Context.MODE_PRIVATE);
-//
-//                        bitmap.compress(Bitmap.CompressFormat.PNG, 100, fOut);
-//                        fOut.flush();
-//                        fOut.close();
-//                    } catch (FileNotFoundException e) {
-//                        e.printStackTrace();
-//                    } catch (IOException e) {
-//                        throw new RuntimeException(e);
-//                    }
-//                    int i = 10;
-//                }
-//            }, 1024, 1024, ImageView.ScaleType.CENTER, null,
-//                    (error ) -> {
-//                int i = 0;
-//            });
-//            queue.add(imgReq);
 
             binding.textInput.setText("");
             binding.textInput2.setText("");
@@ -317,10 +300,22 @@ public class BearImageGenerator extends AppCompatActivity {
         } else if( item.getItemId() == R.id.item_2 ) {
             AlertDialog.Builder builder = new AlertDialog.Builder( BearImageGenerator.this );
 
-            builder.setMessage( "Please input the Width and Height to generate the bear image! " )
+            builder.setMessage( "Please input the Width and Height to generate the bear image!" +
+                            " Insert the Width and Height for your bear image that you want to create!" +
+                            " It will automatically generate the bear image once you click on the generate button" +
+                            " after you set the parameters  " )
                     .setTitle( "Help:" )
                     .create().show();
 
+        } else if( item.getItemId() == R.id.currency ) {
+            Intent intent = new Intent(BearImageGenerator.this, CurrencyConverter.class);
+            startActivity(intent);
+        } else if( item.getItemId() == R.id.question ) {
+            Intent intent = new Intent(BearImageGenerator.this, TriviaQuestionDatabase.class);
+            startActivity(intent);
+        } else if( item.getItemId() == R.id.flight ) {
+            Intent intent = new Intent(BearImageGenerator.this, AviationStackFlightTracker.class);
+            startActivity(intent);
         }
 
         return true;
