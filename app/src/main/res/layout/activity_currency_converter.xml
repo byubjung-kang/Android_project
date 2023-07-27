@@ -1,18 +1,239 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Theme.CurrencyConverter">
+    android:background="#ECDFCA"
+    tools:context="MobileApplication.Group.Theme.CurrencyConverterActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Currency converter"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <!-- Toolbar -->
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/myToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#F3AA60"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+       <!--<FrameLayout
+            android:id="@+id/fragmentLocation"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/myToolbar"/>-->
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+                <!-- Save Button -->
+
+            <!-- From TextView -->
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycleView"
+                    android:layout_width="403dp"
+                    android:layout_height="355dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <Button
+                android:id="@+id/convertBtn"
+                style="@style/Widget.Material3.ExtendedFloatingActionButton.Icon.Surface"
+                android:layout_width="179dp"
+                android:layout_height="57dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="19dp"
+                android:layout_marginBottom="8dp"
+                android:text="@string/convert_button"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textColor="#1D5B79"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/recycleView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextNumberDecimal"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <!-- To TextView -->
+
+            <!-- Enter Amount TextView -->
+
+            <!-- Spinner From -->
+
+            <Button
+                android:id="@+id/saveBtn"
+                style="@style/Widget.Material3.ExtendedFloatingActionButton.Icon.Surface"
+                android:layout_width="179dp"
+                android:layout_height="57dp"
+                android:layout_marginTop="19dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp"
+                android:text="@string/save_button"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textColor="#1D5B79"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/recycleView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextNumberDecimal"
+                app:layout_constraintVertical_bias="0.0" />
+
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="100dp"
+                    android:layout_height="22dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="serif"
+                    android:text="@string/from"
+                    android:textAlignment="center"
+                    android:textColor="#050505"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.192"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.091" />
+
+                <!-- Spinner To -->
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="100dp"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="55dp"
+                    android:fontFamily="serif"
+                    android:text="@string/to"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.968"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.093" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="150dp"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="80dp"
+                    android:fontFamily="serif"
+                    android:text="@string/enter_amount"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.042"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.138" />
+
+                <Spinner
+                    android:id="@+id/spinnerFrom"
+                    android:layout_width="130dp"
+                    android:layout_height="51dp"
+                    android:layout_marginStart="36dp"
+                    android:layout_marginTop="4dp"
+                    android:scrollbars="vertical"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView1" />
+
+                <Spinner
+                    android:id="@+id/spinnerTo"
+                    android:layout_width="130dp"
+                    android:layout_height="51dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="40dp"
+                    android:scrollbars="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageView"
+                    app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+            <!-- Exchange Icon -->
+
+            <!-- Amount TextView To -->
+
+            <!-- Enter Amount EditText -->
+
+            <!-- Equal Icon -->
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="57dp"
+                android:layout_height="63dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.127"
+                app:srcCompat="@drawable/exchange_icon"
+                tools:context=".CurrencyConverter.CurrencyConverter" />
+
+            <TextView
+                android:id="@+id/textViewTo"
+                android:layout_width="131dp"
+                android:layout_height="59dp"
+                android:layout_marginTop="116dp"
+                android:layout_marginEnd="10dp"
+                android:background="#E3B674"
+                android:textColor="#0B0A0A"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.918"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.133" />
+
+            <EditText
+                android:id="@+id/editTextNumberDecimal"
+                android:layout_width="135dp"
+                android:layout_height="52dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="16dp"
+                android:ems="10"
+                android:inputType="numberDecimal"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.101"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.276" />
+
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="66dp"
+                android:layout_height="57dp"
+                android:layout_marginTop="76dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.507"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.19"
+                app:srcCompat="@drawable/equal_icon" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        <!--</FrameLayout>-->
+    </RelativeLayout>
+</LinearLayout>

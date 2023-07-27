@@ -16,13 +16,12 @@
             android:name=".Theme.AviationStackFlightTracker"
             android:exported="false" />
         <activity
-            android:name=".Theme.BearImageGenerator"
+            android:name=".Theme.CurrencyConverterActivity"
+            android:exported="false"/>
+        <activity android:name=".Theme.BearImageGenerator"
             android:exported="false" />
         <activity
             android:name=".Theme.TriviaQuestionDatabase"
-            android:exported="false" />
-        <activity
-            android:name=".Theme.CurrencyConverter"
             android:exported="false" />
         <activity
             android:name=".Theme.MainActivity"
