@@ -3,6 +3,7 @@ package MobileApplication.Group.Theme.BearImageGenerator;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.Image;
@@ -159,12 +160,27 @@ public class BearImageGenerator extends AppCompatActivity {
         binding = ActivityBearImageRoomBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        SharedPreferences prefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
+        binding.textInput.setText(prefs.getString("width", ""));
+        binding.textInput2.setText(prefs.getString("height", ""));
+
+        SharedPreferences.Editor edit = prefs.edit();
+
         //this loads the toolbar, in onCreateOptionsMenu
         setSupportActionBar(binding.myToolbar);
 
         binding.generateButton.setOnClickListener(click -> {
+            SharedPreferences.Editor editor = prefs.edit();
+
+
             String input = binding.textInput.getText().toString();
+            editor.putString("width", input);
+            editor.commit();
+
             String height = binding.textInput2.getText().toString();
+            editor.putString("height", height);
+            editor.commit();
+
             boolean type = false;
 
             BearImage newImage = new BearImage(input, height, type);
