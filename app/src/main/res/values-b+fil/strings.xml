@@ -1,22 +1,25 @@
-<resources>
-    <string name="app_name">CurrencyConverter</string>
-    <string name="help">Help</string>
-    <string name="convert_button">Convert</string>
-    <string name="from">From</string>
-    <string name="to">To</string>
-    <string name="enter_amount">Enter Amount</string>
-    <string name="save_button">Save</string>
-    <string name="delete_confirmation_message">Do you want to delete this conversion history entry?</string>
-    <string name="delete_confirmation_title">Delete Confirmation</string>
-    <string name="no">No</string>
-    <string name="yes">Yes</string>
-    <string name="undo">Undo</string>
+<?xml version="1.0" encoding="utf-8"?>
 
-    <string name="help_dialog_title">Currency Converter Help</string>
-    <string name="help_dialog_message">Instructions for using the Currency Converter:\n\n
-    1. Enter the amount in the \'From\' currency field.\n
-    2. Select the currency from the \'From\' dropdown menu.\n
-    3. Select the currency from the \'To\' dropdown menu.\n
-    4. Tap the \'Convert\' button to see the converted amount.\n
-    5. Tap the \'History\' button for conversion history.</string>
+<resources>
+    <string name="app_name">Konbert</string>
+    <string name="help">Tulong</string>
+    <string name="convert_button">Konbert</string>
+    <string name="from">Mula sa</string>
+    <string name="to">Papunta sa</string>
+    <string name="enter_amount">Ipasok ang Halaga</string>
+    <string name="save_button">Isilid</string>
+    <string name="undo">I-Undo</string>
+    <string name="delete_confirmation_message">Gusto mo bang burahin ang konbersyon na ito?</string>
+    <string name="delete_confirmation_title">Kumpirmasyon ng Pagbura</string>
+    <string name="no">Hindi</string>
+    <string name="yes">Oo</string>
+
+    <!-- Translations for dialog messages and instructions -->
+    <string name="help_dialog_title">Tulong sa Pagsasalin ng Pera</string>
+    <string name="help_dialog_message">Mga Tagubilin sa paggamit ng Pagsasalin ng Pera:\n\n
+    1. Ipasok ang halaga sa larangan ng \'Mula sa\' na pera.\n
+    2. Pumili ng pera sa dropdown menu ng \'Mula sa\'.\n
+    3. Pumili ng pera sa dropdown menu ng \'Papunta sa\'.\n
+    4. Tapikin ang button na \'Konbert\' upang makita ang kinalabasang halaga.\n
+    5. Para sa kasaysayan ng mga konbersyon, tapikin ang button na \'Kasaysayan\'.</string>
 </resources>

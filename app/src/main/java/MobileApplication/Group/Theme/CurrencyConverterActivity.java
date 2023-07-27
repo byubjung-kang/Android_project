@@ -66,7 +66,6 @@ public class CurrencyConverterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_currency_converter);
 
-
         Toolbar theToolbar = findViewById(R.id.myToolbar);
         setSupportActionBar(theToolbar);
 
@@ -126,7 +125,7 @@ public class CurrencyConverterActivity extends AppCompatActivity {
 
         queue = Volley.newRequestQueue(this);
 
-        convertButton.setOnClickListener(click -> {
+       convertButton.setOnClickListener(click -> {
             String amountEditText = inputAmount.getText().toString();
             SharedPreferences.Editor editor = prefs.edit();
             editor.putString("InputAmount", amountEditText);
