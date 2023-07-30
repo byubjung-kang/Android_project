@@ -2,10 +2,16 @@ package MobileApplication.Group.Theme;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -20,13 +26,17 @@ import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
 
+import MobileApplication.Group.R;
 import MobileApplication.Group.databinding.ActivityFlightBinding;
-
 
 public class AviationStackFlightTracker extends AppCompatActivity {
 
     private RequestQueue queue;
+    private FlightAdapter flightAdapter;
+    private List<Flight> flightDetailsList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,68 +45,74 @@ public class AviationStackFlightTracker extends AppCompatActivity {
         ActivityFlightBinding binding = ActivityFlightBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        // Initialize the RecyclerView and its adapter
+        RecyclerView recyclerView = findViewById(R.id.resultRecyclerView);
+        flightDetailsList = new ArrayList<>();
+        flightAdapter = new FlightAdapter(flightDetailsList);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(flightAdapter);
+
         queue = Volley.newRequestQueue(this);
 
         binding.searchButton.setOnClickListener(click -> {
             String airportCode = binding.flightSearch.getText().toString();
             try {
-                String url = "http://api.aviationstack.com/v1/flights?access_key=fe6a4de5950698ecf53a949f3d155102&dep_iata=" +
+                String url = "http://api.aviationstack.com/v1/flights?access_key=9369a5d0e7437f682ae27b4d84d09921&dep_iata=" +
                         URLEncoder.encode(airportCode, "UTF-8");
 
                 JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
-                        response -> {
-                            Log.d("API Response", response.toString());
-                            try {
-                                JSONArray data = response.getJSONArray("data");
-                                boolean foundDepartureFlight = false;
+                        new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                Log.d("API Response", response.toString());
+                                try {
+                                    JSONArray data = response.getJSONArray("data");
+                                    boolean foundDepartureFlight = false;
+                                    flightDetailsList.clear(); // Clear the previous flight details before adding new ones
 
-                                for (int i = 0; i < data.length(); i++) {
-                                    JSONObject flight = data.getJSONObject(i);
-                                    JSONObject departure = flight.getJSONObject("departure");
-                                    String departureAirportIata = departure.getString("iata");
+                                    for (int i = 0; i < data.length(); i++) {
+                                        JSONObject flightData = data.getJSONObject(i);
+                                        JSONObject departure = flightData.getJSONObject("departure");
+                                        String departureAirportIata = departure.getString("iata");
 
-                                    if (airportCode.equalsIgnoreCase(departureAirportIata)) {
-                                        String airlineName = flight.getJSONObject("airline").getString("name");
-                                        String flightNumber = flight.getJSONObject("flight").getString("number");
-                                        String departureAirport = departure.getString("airport");
-                                        String scheduledDepartureTime = departure.getString("scheduled");
+                                        if (airportCode.equalsIgnoreCase(departureAirportIata)) {
+                                            String airlineName = flightData.getJSONObject("airline").getString("name");
+                                            String flightNumber = flightData.getJSONObject("flight").getString("number");
+                                            String departureAirport = departure.getString("airport");
+                                            String scheduledDepartureTime = departure.getString("scheduled");
 
-                                        String flightDetails = "Flight: " + airlineName + " " + flightNumber +
-                                                "\nDeparture Airport: " + departureAirport +
-                                                "\nScheduled Departure Time: " + scheduledDepartureTime;
-
-                                        // Update the ResultTextView on the main UI thread
-                                        runOnUiThread(() -> {
-                                            binding.resultRecyclerView.setText(flightDetails);
-                                            binding.resultRecyclerView.setVisibility(View.VISIBLE);
-                                        });
-
-                                        foundDepartureFlight = true;
-                                        break;
+                                            // Create a new Flight object and add it to the list
+                                            Flight flight = new Flight(airlineName, flightNumber, departureAirport, scheduledDepartureTime, "");
+                                            flightDetailsList.add(flight);
+                                            foundDepartureFlight = true;
+                                        }
                                     }
-                                }
 
-                                if (!foundDepartureFlight) {
-                                    String noFlightMessage = "No departure flight found for airport code " + airportCode;
-                                    // Update the ResultTextView on the main UI thread
-                                    runOnUiThread(() -> {
-                                        binding.resultRecyclerView.setText(noFlightMessage);
-                                        binding.resultRecyclerView.setVisibility(View.VISIBLE);
-                                    });
-                                }
+                                    // Notify the adapter about data changes
+                                    flightAdapter.notifyDataSetChanged();
 
-                            } catch (JSONException e) {
-                                e.printStackTrace();
+                                    if (!foundDepartureFlight) {
+                                        String noFlightMessage = "No departure flight found for airport code " + airportCode;
+                                        Log.d("FlightTracker", noFlightMessage);
+                                    }
+
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                    Log.e("FlightTracker", "Error parsing JSON response");
+                                }
                             }
-                        }, error -> {
-                    // Handle error
-                    Log.e("API Error", error.toString());
-                    // Update the ResultTextView on the main UI thread
-                    runOnUiThread(() -> {
-                        Toast.makeText(this, "API Request Error", Toast.LENGTH_SHORT).show();
-                    });
-                });
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Log.e("API Error", error.toString());
+                                runOnUiThread(() -> {
+                                    Toast.makeText(AviationStackFlightTracker.this, "API Request Error", Toast.LENGTH_SHORT).show();
+                                });
+                            }
+                        });
 
+                // Add the request to the RequestQueue
                 queue.add(request);
 
             } catch (UnsupportedEncodingException e) {
@@ -104,5 +120,43 @@ public class AviationStackFlightTracker extends AppCompatActivity {
                 Toast.makeText(AviationStackFlightTracker.this, "Unsupported Encoding Exception", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private class FlightAdapter extends RecyclerView.Adapter<FlightAdapter.FlightViewHolder> {
+
+        private List<Flight> flightList;
+
+        public FlightAdapter(List<Flight> flightList) {
+            this.flightList = flightList;}
+
+        @NonNull
+        @Override
+        public FlightViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.flight_item_layout, parent, false);
+            return new FlightViewHolder(view);
+        }
+
+        @Override
+        public void onBindViewHolder(@NonNull FlightViewHolder holder, int position) {
+            Flight flight = flightList.get(position);
+            String flightDetails = "Flight: " + flight.getAirlineName() + " " + flight.getFlightNumber() +
+                    "\nDeparture Airport: " + flight.getDepartureTime() +
+                    "\nScheduled Departure Time: " + flight.getDestinationAirport();
+            holder.flightInfoTextView.setText(flightDetails);
+        }
+
+        @Override
+        public int getItemCount() {
+            return flightList.size();
+        }
+
+        public class FlightViewHolder extends RecyclerView.ViewHolder {
+            TextView flightInfoTextView;
+
+            public FlightViewHolder(View itemView) {
+                super(itemView);
+                flightInfoTextView = itemView.findViewById(R.id.flightInfoTextView);
+            }
+        }
     }
 }
