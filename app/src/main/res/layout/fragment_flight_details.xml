@@ -1,12 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/my_primary">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="@color/my_primary">
 
-        <TextView
+
+    <TextView
+        android:id="@+id/flightDetailsTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="Flight details :"
+        android:textSize="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
             android:textSize="30dp"
             android:id="@+id/flightNumberTextView"
             android:layout_width="wrap_content"
@@ -14,23 +26,22 @@
             android:layout_marginTop="32dp"
             android:layout_marginStart="32dp"
             android:text="Flight number"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="@+id/flightDetailsTextView"
+            app:layout_constraintTop_toBottomOf="@id/flightDetailsTextView" />
 
 
-        <TextView
-            android:textSize="30dp"
-            android:id="@+id/destinationTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:layout_marginStart="32dp"
-            android:text="Destination"
-            app:layout_constraintStart_toStartOf="@+id/flightNumberTextView"
-            app:layout_constraintTop_toBottomOf="@id/flightNumberTextView" />
+    <TextView
+        android:id="@+id/destinationTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:text="Destination"
+        android:textSize="30dp"
+        app:layout_constraintStart_toStartOf="@+id/flightNumberTextView"
+        app:layout_constraintTop_toBottomOf="@id/flightNumberTextView" />
 
-
-        <TextView
+    <TextView
             android:textSize="30dp"
             android:id="@+id/terminalTextView"
             android:layout_width="wrap_content"

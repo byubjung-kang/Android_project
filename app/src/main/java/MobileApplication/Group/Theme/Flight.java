@@ -5,17 +5,19 @@ public class Flight {
     private String flightNumber;
     private String departureTime;
     private String destinationAirport;
-    private String flightStatus;
+    private String departureAirport;
+   // private String flightStatus;
     private String terminal;
     private String gate;
     private String delay;
 
-    public Flight(String airlineName, String flightNumber, String departureTime, String destinationAirport, String flightStatus) {
+    public Flight(String airlineName, String flightNumber, String departureTime, String destinationAirport, String departureAirport, String terminal, String gate, String delay) {
         this.airlineName = airlineName;
         this.flightNumber = flightNumber;
         this.departureTime = departureTime;
         this.destinationAirport = destinationAirport;
-        this.flightStatus = flightStatus;
+       this.departureAirport = departureAirport;
+       // this.flightStatus = flightStatus;
         this.terminal = terminal;
         this.gate = gate;
         this.delay = delay;
@@ -27,7 +29,8 @@ public class Flight {
         this.flightNumber = "";
         this.departureTime = "";
         this.destinationAirport = "";
-        this.flightStatus = "";
+        this.departureAirport = "";
+       // this.flightStatus = "";
         this.terminal = "";
         this.gate = "";
         this.delay = "";
@@ -65,13 +68,13 @@ public class Flight {
         this.destinationAirport = destinationAirport;
     }
 
-    public String getFlightStatus() {
-        return flightStatus;
-    }
-
-    public void setFlightStatus(String flightStatus) {
-        this.flightStatus = flightStatus;
-    }
+//    public String getFlightStatus() {
+//        return flightStatus;
+//    }
+//
+//    public void setFlightStatus(String flightStatus) {
+//        this.flightStatus = flightStatus;
+//    }
 
     public String getTerminal() {
         return terminal;
@@ -95,5 +98,13 @@ public class Flight {
 
     public void setDelay(String delay) {
         this.delay = delay;
+    }
+
+    public String getDepartureAirport() {
+        return departureAirport;
+    }
+
+    public void setDepartureAirport(String departureAirport) {
+        this.departureAirport = departureAirport;
     }
 }

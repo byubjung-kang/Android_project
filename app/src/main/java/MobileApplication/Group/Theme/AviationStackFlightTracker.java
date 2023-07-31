@@ -77,20 +77,41 @@ public class AviationStackFlightTracker extends AppCompatActivity implements Fli
                                     for (int i = 0; i < data.length(); i++) {
                                         JSONObject flightData = data.getJSONObject(i);
                                         JSONObject departure = flightData.getJSONObject("departure");
+                                        JSONObject arrival = flightData.getJSONObject("arrival");
                                         String departureAirportIata = departure.getString("iata");
 
                                         if (airportCode.equalsIgnoreCase(departureAirportIata)) {
                                             String airlineName = flightData.getJSONObject("airline").getString("name");
                                             String flightNumber = flightData.getJSONObject("flight").getString("number");
-                                            String departureAirport = departure.getString("airport");
-                                            String scheduledDepartureTime = departure.getString("scheduled");
 
-                                            // Create a new Flight object and add it to the list
-                                            Flight flight = new Flight(airlineName, flightNumber, departureAirport, scheduledDepartureTime, "");
+                                            String departureAirport = departure.getString("airport");
+                                            String departureTime = departure.getString("scheduled");
+                                            String destinationAirport = arrival.getString("airport");
+
+                                            // Extract additional flight details (gate, delay, terminal) from the JSON response
+                                            String gate = departure.optString("gate", "N/A");
+                                            String delay = departure.optString("delay", "N/A");
+                                            String terminal = departure.optString("terminal", "N/A");
+
+                                            // Create a new Flight object and set the additional details
+                                            Flight flight = new Flight(airlineName,flightNumber,departureAirport,departureTime, destinationAirport,terminal,gate,delay);
+
+                                            flight.getAirlineName();
+                                            flight.getFlightNumber();
+                                            flight.getDepartureTime();
+                                            flight.getDestinationAirport();
+                                            flight.getDepartureAirport();
+                                            flight.setGate(gate);
+                                            flight.setDelay(delay);
+                                            flight.setTerminal(terminal);
+
+
                                             flightDetailsList.add(flight);
                                             foundDepartureFlight = true;
+
                                         }
                                     }
+
 
                                     // Notify the adapter about data changes
                                     flightAdapter.notifyDataSetChanged();
