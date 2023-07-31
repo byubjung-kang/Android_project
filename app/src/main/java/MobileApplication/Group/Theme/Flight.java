@@ -6,6 +6,9 @@ public class Flight {
     private String departureTime;
     private String destinationAirport;
     private String flightStatus;
+    private String terminal;
+    private String gate;
+    private String delay;
 
     public Flight(String airlineName, String flightNumber, String departureTime, String destinationAirport, String flightStatus) {
         this.airlineName = airlineName;
@@ -13,6 +16,9 @@ public class Flight {
         this.departureTime = departureTime;
         this.destinationAirport = destinationAirport;
         this.flightStatus = flightStatus;
+        this.terminal = terminal;
+        this.gate = gate;
+        this.delay = delay;
     }
 
     // Constructor for the dummy flight with a single parameter
@@ -22,7 +28,11 @@ public class Flight {
         this.departureTime = "";
         this.destinationAirport = "";
         this.flightStatus = "";
+        this.terminal = "";
+        this.gate = "";
+        this.delay = "";
     }
+
     public String getAirlineName() {
         return airlineName;
     }
@@ -61,5 +71,29 @@ public class Flight {
 
     public void setFlightStatus(String flightStatus) {
         this.flightStatus = flightStatus;
+    }
+
+    public String getTerminal() {
+        return terminal;
+    }
+
+    public void setTerminal(String terminal) {
+        this.terminal = terminal;
+    }
+
+    public String getGate() {
+        return gate;
+    }
+
+    public void setGate(String gate) {
+        this.gate = gate;
+    }
+
+    public String getDelay() {
+        return delay;
+    }
+
+    public void setDelay(String delay) {
+        this.delay = delay;
     }
 }

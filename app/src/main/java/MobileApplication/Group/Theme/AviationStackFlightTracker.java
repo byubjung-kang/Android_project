@@ -32,11 +32,13 @@ import java.util.List;
 import MobileApplication.Group.R;
 import MobileApplication.Group.databinding.ActivityFlightBinding;
 
-public class AviationStackFlightTracker extends AppCompatActivity {
+
+public class AviationStackFlightTracker extends AppCompatActivity implements FlightAdapter.FlightClickListener {
 
     private RequestQueue queue;
     private FlightAdapter flightAdapter;
     private List<Flight> flightDetailsList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,16 +50,18 @@ public class AviationStackFlightTracker extends AppCompatActivity {
         // Initialize the RecyclerView and its adapter
         RecyclerView recyclerView = findViewById(R.id.resultRecyclerView);
         flightDetailsList = new ArrayList<>();
-        flightAdapter = new FlightAdapter(flightDetailsList);
+        flightAdapter = new FlightAdapter(flightDetailsList, this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(flightAdapter);
+
+        flightAdapter.setFlightClickListener(this); // Set the FlightClickListener
 
         queue = Volley.newRequestQueue(this);
 
         binding.searchButton.setOnClickListener(click -> {
             String airportCode = binding.flightSearch.getText().toString();
             try {
-                String url = "http://api.aviationstack.com/v1/flights?access_key=9369a5d0e7437f682ae27b4d84d09921&dep_iata=" +
+                String url = "http://api.aviationstack.com/v1/flights?access_key=5b76bd71ac067b87be25a454d51dcad5&dep_iata=" +
                         URLEncoder.encode(airportCode, "UTF-8");
 
                 JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
@@ -122,41 +126,20 @@ public class AviationStackFlightTracker extends AppCompatActivity {
         });
     }
 
-    private class FlightAdapter extends RecyclerView.Adapter<FlightAdapter.FlightViewHolder> {
 
-        private List<Flight> flightList;
 
-        public FlightAdapter(List<Flight> flightList) {
-            this.flightList = flightList;}
+    @Override
+    public void onFlightClick(Flight flight) {
+        // Show the FlightDetailsFragment
+        FlightDetailsFragment detailsFragment = FlightDetailsFragment.newInstance(
+                flight.getAirlineName(), flight.getFlightNumber(), flight.getDestinationAirport(),
+                flight.getDepartureTime(), flight.getTerminal(), flight.getGate(), flight.getDelay());
 
-        @NonNull
-        @Override
-        public FlightViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.flight_item_layout, parent, false);
-            return new FlightViewHolder(view);
-        }
-
-        @Override
-        public void onBindViewHolder(@NonNull FlightViewHolder holder, int position) {
-            Flight flight = flightList.get(position);
-            String flightDetails = "Flight: " + flight.getAirlineName() + " " + flight.getFlightNumber() +
-                    "\nDeparture Airport: " + flight.getDepartureTime() +
-                    "\nScheduled Departure Time: " + flight.getDestinationAirport();
-            holder.flightInfoTextView.setText(flightDetails);
-        }
-
-        @Override
-        public int getItemCount() {
-            return flightList.size();
-        }
-
-        public class FlightViewHolder extends RecyclerView.ViewHolder {
-            TextView flightInfoTextView;
-
-            public FlightViewHolder(View itemView) {
-                super(itemView);
-                flightInfoTextView = itemView.findViewById(R.id.flightInfoTextView);
-            }
-        }
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragmentLocation, detailsFragment)
+                .addToBackStack(null)
+                .commit();
     }
+
+
 }
