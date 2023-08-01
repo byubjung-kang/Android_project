@@ -15,7 +15,7 @@
         android:layout_height="0dp"
         android:layout_rowWeight="1"
         android:layout_columnWeight="1"
-        android:background="@drawable/rectangle_button1"
+        android:background="@drawable/rectangle_button2"
         android:text="Aviation stack flight tracker" />
 
     <Button
@@ -24,7 +24,7 @@
         android:layout_height="0dp"
         android:layout_rowWeight="1"
         android:layout_columnWeight="1"
-        android:background="@drawable/rectangle_button2"
+        android:background="@drawable/rectangle_button1"
         android:text="Currency converter" />
 
     <Button

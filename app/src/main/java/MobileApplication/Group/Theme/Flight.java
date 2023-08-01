@@ -1,39 +1,59 @@
 package MobileApplication.Group.Theme;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+@Entity
 public class Flight {
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
+    public int id;
+    @ColumnInfo
     private String airlineName;
+    @ColumnInfo
     private String flightNumber;
+    @ColumnInfo
     private String departureTime;
+    @ColumnInfo
     private String destinationAirport;
+    @ColumnInfo
     private String departureAirport;
    // private String flightStatus;
-    private String terminal;
+   @ColumnInfo
+   private String terminal;
+    @ColumnInfo
     private String gate;
+    @ColumnInfo
     private String delay;
 
-    public Flight(String airlineName, String flightNumber, String departureTime, String destinationAirport, String departureAirport, String terminal, String gate, String delay) {
+    public Flight(String airlineName, String flightNumber, String destinationAirport, String terminal, String delay, String gate) {
         this.airlineName = airlineName;
         this.flightNumber = flightNumber;
-        this.departureTime = departureTime;
         this.destinationAirport = destinationAirport;
-       this.departureAirport = departureAirport;
-       // this.flightStatus = flightStatus;
         this.terminal = terminal;
-        this.gate = gate;
         this.delay = delay;
+        this.gate = gate;
+    }
+//
+//    // Constructor for the dummy flight with a single parameter
+//    public Flight(String message) {
+//        this.airlineName = message;
+//        this.flightNumber = "";
+//        this.departureTime = "";
+//        this.destinationAirport = "";
+//        this.departureAirport = "";
+//       // this.flightStatus = "";
+//        this.terminal = "";
+//        this.gate = "";
+//        this.delay = "";
+//    }
+
+    public int getId() {
+        return id;
     }
 
-    // Constructor for the dummy flight with a single parameter
-    public Flight(String message) {
-        this.airlineName = message;
-        this.flightNumber = "";
-        this.departureTime = "";
-        this.destinationAirport = "";
-        this.departureAirport = "";
-       // this.flightStatus = "";
-        this.terminal = "";
-        this.gate = "";
-        this.delay = "";
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getAirlineName() {

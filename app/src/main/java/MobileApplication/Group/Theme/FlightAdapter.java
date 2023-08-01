@@ -32,9 +32,11 @@ public class FlightAdapter extends RecyclerView.Adapter<FlightAdapter.FlightView
     @Override
     public void onBindViewHolder(@NonNull FlightViewHolder holder, int position) {
         Flight flight = flightList.get(position);
-        String flightDetails = "Flight name: " + flight.getAirlineName() + " " + flight.getFlightNumber() +
-                "\nDeparture Airport: " + flight.getDepartureAirport() +
-                "\nScheduled Departure Time: " + flight.getDepartureTime();
+        String flightDetails =  "Flight # : " + flight.getFlightNumber() + " - " + flight.getAirlineName() ;
+
+//        String flightDetails = "Flight name: " + flight.getAirlineName() + " " + flight.getFlightNumber() +
+//                "\nDeparture Airport: " + flight.getDepartureAirport() +
+//                "\nScheduled Departure Time: " + flight.getDepartureTime();
         holder.flightInfoTextView.setText(flightDetails);
 
         holder.itemView.setOnClickListener(v -> {

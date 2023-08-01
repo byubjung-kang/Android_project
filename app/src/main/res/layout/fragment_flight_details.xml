@@ -1,30 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
     <androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:background="@color/my_primary">
 
+    <TextView
+        android:id="@+id/flightTitleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Your flight search details:"
+        android:textSize="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.093"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/flightDetailsTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="32dp"
         android:text="Flight details :"
-        android:textSize="30dp"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.187"
+        app:layout_constraintStart_toStartOf="@id/flightTitleTextView"
+        app:layout_constraintTop_toBottomOf="@id/flightTitleTextView" />
 
     <TextView
-            android:textSize="30dp"
+            android:textSize="20dp"
             android:id="@+id/flightNumberTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:layout_marginStart="32dp"
+
             android:text="Flight number"
             app:layout_constraintStart_toStartOf="@+id/flightDetailsTextView"
             app:layout_constraintTop_toBottomOf="@id/flightDetailsTextView" />
@@ -34,20 +47,20 @@
         android:id="@+id/destinationTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+
         android:layout_marginTop="32dp"
         android:text="Destination"
-        android:textSize="30dp"
+        android:textSize="20dp"
         app:layout_constraintStart_toStartOf="@+id/flightNumberTextView"
         app:layout_constraintTop_toBottomOf="@id/flightNumberTextView" />
 
     <TextView
-            android:textSize="30dp"
+            android:textSize="20dp"
             android:id="@+id/terminalTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:layout_marginStart="32dp"
+
             android:text="Terminal"
             app:layout_constraintStart_toStartOf="@+id/destinationTextView"
             app:layout_constraintTop_toBottomOf="@+id/destinationTextView"/>
@@ -55,29 +68,42 @@
 
         <TextView
 
-            android:textSize="30dp"
+            android:textSize="20dp"
             android:id="@+id/delayTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:layout_marginStart="32dp"
             android:text="Delay"
             app:layout_constraintStart_toStartOf="@+id/terminalTextView"
             app:layout_constraintTop_toBottomOf="@+id/terminalTextView" />
 
-        <TextView
+    <TextView
 
-            android:textSize="30dp"
-            android:id="@+id/gateTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:layout_marginStart="32dp"
-            android:text="Gate"
-            app:layout_constraintStart_toStartOf="@+id/delayTextView"
-            app:layout_constraintTop_toBottomOf="@+id/delayTextView" />
+        android:id="@+id/gateTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Gate"
+
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="@+id/delayTextView"
+        app:layout_constraintTop_toBottomOf="@+id/delayTextView" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="407dp"
+        android:layout_height="227dp"
+
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="72dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintTop_toBottomOf="@+id/gateTextView"
+
+        app:srcCompat="@drawable/flight2" />
 
 
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 

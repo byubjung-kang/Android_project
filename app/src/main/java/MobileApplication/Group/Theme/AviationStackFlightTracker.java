@@ -61,7 +61,7 @@ public class AviationStackFlightTracker extends AppCompatActivity implements Fli
         binding.searchButton.setOnClickListener(click -> {
             String airportCode = binding.flightSearch.getText().toString();
             try {
-                String url = "http://api.aviationstack.com/v1/flights?access_key=5b76bd71ac067b87be25a454d51dcad5&dep_iata=" +
+                String url = "http://api.aviationstack.com/v1/flights?access_key=7a7d33e5d77d662f1e50625584b2871e&dep_iata=" +
                         URLEncoder.encode(airportCode, "UTF-8");
 
                 JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
@@ -94,16 +94,14 @@ public class AviationStackFlightTracker extends AppCompatActivity implements Fli
                                             String terminal = departure.optString("terminal", "N/A");
 
                                             // Create a new Flight object and set the additional details
-                                            Flight flight = new Flight(airlineName,flightNumber,departureAirport,departureTime, destinationAirport,terminal,gate,delay);
+                                            Flight flight = new Flight(airlineName,flightNumber,destinationAirport,terminal,delay,gate);
 
                                             flight.getAirlineName();
                                             flight.getFlightNumber();
-                                            flight.getDepartureTime();
                                             flight.getDestinationAirport();
-                                            flight.getDepartureAirport();
-                                            flight.setGate(gate);
-                                            flight.setDelay(delay);
-                                            flight.setTerminal(terminal);
+                                            flight.getTerminal();
+                                            flight.getDelay();
+                                            flight.getGate();
 
 
                                             flightDetailsList.add(flight);
@@ -152,9 +150,12 @@ public class AviationStackFlightTracker extends AppCompatActivity implements Fli
     @Override
     public void onFlightClick(Flight flight) {
         // Show the FlightDetailsFragment
-        FlightDetailsFragment detailsFragment = FlightDetailsFragment.newInstance(
-                flight.getAirlineName(), flight.getFlightNumber(), flight.getDestinationAirport(),
-                flight.getDepartureTime(), flight.getTerminal(), flight.getGate(), flight.getDelay());
+//        FlightDetailsFragment detailsFragment = FlightDetailsFragment(
+//                flight.getAirlineName(), flight.getFlightNumber(), flight.getDestinationAirport(),
+//                flight.getDepartureTime(), flight.getTerminal(), flight.getGate(), flight.getDelay());
+
+        // Show the FlightDetailsFragment with the selected flight's details
+        FlightDetailsFragment detailsFragment = new FlightDetailsFragment(flight);
 
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragmentLocation, detailsFragment)
