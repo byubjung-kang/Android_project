@@ -11,11 +11,25 @@ import com.squareup.picasso.Picasso;
 
 import Data.BearImageGeneratorData.BearImage;
 import MobileApplication.Group.databinding.DetailsBearImageLayoutBinding;
-
+/**
+ * @author Jeonghyeon Lee
+ * @version 1.0
+ */
+/**
+ * A Fragment class that displays the details of a selected BearImage.
+ */
 public class BearImageDetailsFragment extends Fragment {
 
+    /**
+     * The selected BearImage to be displayed in the details fragment.
+     */
     BearImage selected;
 
+    /**
+     * Constructs a new BearImageDetailsFragment with the provided BearImage as the selected one.
+     *
+     * @param m The BearImage object to be displayed in the details fragment.
+     */
     public BearImageDetailsFragment(BearImage m) {
         selected = m;
     }

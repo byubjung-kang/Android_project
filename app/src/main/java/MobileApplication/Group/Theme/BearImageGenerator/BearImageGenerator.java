@@ -51,7 +51,14 @@ import MobileApplication.Group.Theme.MainActivity;
 import MobileApplication.Group.Theme.TriviaQuestionDatabase;
 import MobileApplication.Group.databinding.BearImageCardBinding;
 import MobileApplication.Group.databinding.ActivityBearImageRoomBinding;
-
+/**
+ * @author Jeonghyeon Lee
+ * @version 1.0
+ */
+/**
+ * This class represents the main activity of the BearImageGenerator app.
+ * Users can generate and display bear images with different width and height combinations.
+ */
 public class BearImageGenerator extends AppCompatActivity {
 
     @NonNull
@@ -61,8 +68,6 @@ public class BearImageGenerator extends AppCompatActivity {
     int positionDel;
     RequestQueue queue = null;
     Bitmap image;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -181,9 +186,8 @@ public class BearImageGenerator extends AppCompatActivity {
             editor.putString("height", height);
             editor.commit();
 
-            boolean type = false;
 
-            BearImage newImage = new BearImage(input, height, type);
+            BearImage newImage = new BearImage(input, height);
 
             Executor thread = Executors.newSingleThreadExecutor();
             thread.execute( () -> {
@@ -261,9 +265,6 @@ public class BearImageGenerator extends AppCompatActivity {
             @Override
             public int getItemViewType(int position){
                 BearImage obj = images.get(position);
-                if (obj.getIsSentButton() == true)
-                    return 1;
-                else
                     return 2;
             }
 
@@ -337,6 +338,12 @@ public class BearImageGenerator extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * Initialize the contents of the Activity's standard options menu.
+     *
+     * @param menu The options menu in which you place your items.
+     * @return You must return true for the menu to be displayed; if you return false, it will not be shown.
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
