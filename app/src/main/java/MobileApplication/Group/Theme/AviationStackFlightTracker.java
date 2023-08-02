@@ -1,6 +1,7 @@
 package MobileApplication.Group.Theme;
 
 import android.os.Bundle;
+import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -28,6 +30,8 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 import MobileApplication.Group.R;
 import MobileApplication.Group.databinding.ActivityFlightBinding;
@@ -38,7 +42,7 @@ public class AviationStackFlightTracker extends AppCompatActivity implements Fli
     private RequestQueue queue;
     private FlightAdapter flightAdapter;
     private List<Flight> flightDetailsList;
-
+    protected ArrayList<Flight> theFlight;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +50,7 @@ public class AviationStackFlightTracker extends AppCompatActivity implements Fli
 
         ActivityFlightBinding binding = ActivityFlightBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
 
         // Initialize the RecyclerView and its adapter
         RecyclerView recyclerView = findViewById(R.id.resultRecyclerView);

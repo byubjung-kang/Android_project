@@ -1,8 +1,13 @@
 package MobileApplication.Group.Theme;
 
+import android.content.Context;
+
 import androidx.room.ColumnInfo;
+import androidx.room.Dao;
 import androidx.room.Entity;
+import androidx.room.Insert;
 import androidx.room.PrimaryKey;
+
 @Entity
 public class Flight {
     @PrimaryKey(autoGenerate = true)
@@ -34,19 +39,7 @@ public class Flight {
         this.delay = delay;
         this.gate = gate;
     }
-//
-//    // Constructor for the dummy flight with a single parameter
-//    public Flight(String message) {
-//        this.airlineName = message;
-//        this.flightNumber = "";
-//        this.departureTime = "";
-//        this.destinationAirport = "";
-//        this.departureAirport = "";
-//       // this.flightStatus = "";
-//        this.terminal = "";
-//        this.gate = "";
-//        this.delay = "";
-//    }
+
 
     public int getId() {
         return id;
@@ -88,14 +81,6 @@ public class Flight {
         this.destinationAirport = destinationAirport;
     }
 
-//    public String getFlightStatus() {
-//        return flightStatus;
-//    }
-//
-//    public void setFlightStatus(String flightStatus) {
-//        this.flightStatus = flightStatus;
-//    }
-
     public String getTerminal() {
         return terminal;
     }
@@ -127,4 +112,7 @@ public class Flight {
     public void setDepartureAirport(String departureAirport) {
         this.departureAirport = departureAirport;
     }
+
+
+
 }
