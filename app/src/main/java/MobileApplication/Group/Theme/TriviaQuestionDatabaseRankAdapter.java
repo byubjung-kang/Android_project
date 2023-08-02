@@ -17,7 +17,16 @@ import java.util.List;
 import MobileApplication.Group.R;
 
 
+/**
+ * A custom RecyclerView adapter for displaying a list of ranking items.
+ * @author byubjung kang
+ * @version 1.0
+ */
 public class TriviaQuestionDatabaseRankAdapter extends RecyclerView.Adapter<TriviaQuestionDatabaseRankAdapter.ViewHolder> {
+
+    /**
+     * List to store the ranking items
+     */
     private List<TriviaQuestionDatabaseRankItem> rankingList = new ArrayList<>();
 
     @NonNull
@@ -41,11 +50,19 @@ public class TriviaQuestionDatabaseRankAdapter extends RecyclerView.Adapter<Triv
         return rankingList.size();
     }
 
+    /**
+     * Submits a new list of ranking items to be displayed in the RecyclerView.
+     *
+     * @param list The new list of ranking items.
+     */
     public void submitList(List<TriviaQuestionDatabaseRankItem> list) {
         rankingList = list;
         notifyDataSetChanged();
     }
 
+    /**
+     * ViewHolder class to hold and display individual ranking items in the RecyclerView.
+     */
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView rankTextView;
         private TextView nameTextView;
@@ -64,29 +81,34 @@ public class TriviaQuestionDatabaseRankAdapter extends RecyclerView.Adapter<Triv
                     if (position != RecyclerView.NO_POSITION) {
                         TriviaQuestionDatabaseRankItem currentItem = rankingList.get(position);
 
-                        // Create new fragment and transaction
+
                         TriviaRankDetailFragment userDetailFragment = new TriviaRankDetailFragment();
                         FragmentTransaction transaction = ((FragmentActivity) v.getContext()).getSupportFragmentManager().beginTransaction();
 
-                        // Add data to pass to the fragment
+
                         Bundle bundle = new Bundle();
                         bundle.putString("rank", String.valueOf(currentItem.getRank()));
                         bundle.putString("name", currentItem.getName());
                         bundle.putString("score", String.valueOf(currentItem.getScore()));
                         userDetailFragment.setArguments(bundle);
 
-                        // Replace whatever is in the fragment_container view with this fragment,
-                        // and add the transaction to the back stack
+
                         transaction.replace(R.id.fragmentFrame3, userDetailFragment);
                         transaction.addToBackStack(null);
 
-                        // Commit the transaction
+
                         transaction.commit();
                     }
                 }
         });
 
         }
+
+        /**
+         * Binds the ranking item data to the ViewHolder's views.
+         *
+         * @param item The ranking item to bind.
+         */
         public void bind(TriviaQuestionDatabaseRankItem item) {
             rankTextView.setText(String.valueOf(item.getRank()));
             nameTextView.setText(item.getName());

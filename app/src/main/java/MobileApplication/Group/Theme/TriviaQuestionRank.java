@@ -17,9 +17,22 @@ import MobileApplication.Group.Data.TriviaRankingDAO;
 import MobileApplication.Group.Data.TriviaRankingDatabase;
 import MobileApplication.Group.R;
 
+
+/**
+ * Activity to display the ranking list of players.
+ * @author byubjung kang
+ * @version 1.0
+ */
 public class TriviaQuestionRank extends AppCompatActivity {
 
+    /**
+     * The RecyclerView used to display the ranking list of players.
+     */
     private RecyclerView rankingRecyclerView;
+
+    /**
+     * The adapter used to populate the ranking data into the RecyclerView.
+     */
     private TriviaQuestionDatabaseRankAdapter rankingAdapter;
 
     @Override

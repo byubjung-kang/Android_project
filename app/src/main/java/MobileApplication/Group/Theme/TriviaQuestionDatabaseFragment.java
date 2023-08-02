@@ -29,14 +29,50 @@ import java.util.List;
 
 import MobileApplication.Group.R;
 
+
+/**
+ * A fragment that displays trivia questions fetched from an API using Volley.
+ * Allows the user to answer the questions and keeps track of their score.
+ * @author byubjung kang
+ * @version 1.0
+ */
 public class TriviaQuestionDatabaseFragment extends Fragment {
+    /**
+     * the TextView of Trivia question
+     */
     private TextView questionText;
+
+    /**
+     * UI button for option 1, 2, 3, 4, next button and back button
+     */
     private Button option1, option2, option3, option4, nextButton, backButton;
+
+    /**
+     * List of trivia questions fetched from the API
+     */
     private List<TriviaQuestion> questions = new ArrayList<>();
+
+    /**
+     * Index to keep track of the current question
+     */
     private int currentQuestionIndex = 0;
+
+    /**
+     * API URL to fetch trivia questions
+     */
     private String url;
+
+    /**
+     * Score of the user
+     */
     private int score = 0;
 
+    /**
+     * Creates a new instance of TriviaQuestionDatabaseFragment with the specified API URL.
+     *
+     * @param url The API URL to fetch trivia questions from.
+     * @return A new instance of TriviaQuestionDatabaseFragment.
+     */
     public static TriviaQuestionDatabaseFragment newInstance(String url) {
         TriviaQuestionDatabaseFragment fragment = new TriviaQuestionDatabaseFragment();
         Bundle args = new Bundle();
@@ -68,11 +104,13 @@ public class TriviaQuestionDatabaseFragment extends Fragment {
 
         loadQuestions();
 
+        // Set click listener for the back button
         backButton.setOnClickListener(cl -> {
             Intent intent = new Intent(getActivity(), TriviaQuestionDatabase.class);
             startActivity( intent );
         });
 
+        // Set click listener for all option buttons
         View.OnClickListener optionButtonClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -99,6 +137,7 @@ public class TriviaQuestionDatabaseFragment extends Fragment {
         option3.setOnClickListener(optionButtonClickListener);
         option4.setOnClickListener(optionButtonClickListener);
 
+        // Set click listener for the "Next" button
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -120,7 +159,9 @@ public class TriviaQuestionDatabaseFragment extends Fragment {
     }
 
 
-
+    /**
+     * Loads trivia questions from the specified API URL using Volley.
+     */
     private void loadQuestions() {
         RequestQueue queue = Volley.newRequestQueue(getContext());
 
@@ -165,6 +206,9 @@ public class TriviaQuestionDatabaseFragment extends Fragment {
         queue.add(jsonObjectRequest);
     }
 
+    /**
+     * Displays the current trivia question and its options in the UI.
+     */
     private void showQuestion() {
         TriviaQuestion question = questions.get(currentQuestionIndex);
         questionText.setText(question.getQuestion());
@@ -187,6 +231,9 @@ public class TriviaQuestionDatabaseFragment extends Fragment {
         enableAllOptions();
     }
 
+    /**
+     * Disables all option buttons to prevent further selection for the current question.
+     */
     private void disableAllOptions() {
         option1.setEnabled(false);
         option2.setEnabled(false);
@@ -194,6 +241,9 @@ public class TriviaQuestionDatabaseFragment extends Fragment {
         option4.setEnabled(false);
     }
 
+    /**
+     * Enables all option buttons for the next question.
+     */
     private void enableAllOptions() {
         option1.setEnabled(true);
         option2.setEnabled(true);

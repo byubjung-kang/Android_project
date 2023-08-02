@@ -19,10 +19,22 @@ import MobileApplication.Group.Data.TriviaRankingDatabase;
 import MobileApplication.Group.R;
 import MobileApplication.Group.databinding.ActivityTriviaRankDetailFragmentBinding;
 
+
+/**
+ * Fragment to display the details of a player's rank, name, and score.
+ * @author byubjung kang
+ * @version 1.0
+ */
 public class TriviaRankDetailFragment extends Fragment {
 
+    /**
+     * The TextView to display the rank, name, score of the player.
+     */
     TextView rankTextView, nameTextView, scoreTextView;
 
+    /**
+     * Default constructor for the TriviaRankDetailFragment.
+     */
     public TriviaRankDetailFragment() {
 
     }
@@ -51,7 +63,6 @@ public class TriviaRankDetailFragment extends Fragment {
 
                 Snackbar.make(view, "this user name has delected " , Snackbar.LENGTH_SHORT).show();
 
-                // Pop the fragment from the back stack
                 getActivity().getSupportFragmentManager().popBackStack();
             }
         });
@@ -73,7 +84,6 @@ public class TriviaRankDetailFragment extends Fragment {
             String name = bundle.getString("name");
             String score = bundle.getString("score");
 
-            // Set the user details to the text views
             rankTextView.setText(rank);
             nameTextView.setText(name);
             scoreTextView.setText(score);

@@ -14,9 +14,17 @@ import MobileApplication.Group.Data.TriviaRankingDatabase;
 import MobileApplication.Group.R;
 import MobileApplication.Group.databinding.ActivityTriviaScoreBinding;
 
+
+/**
+ * Represents an activity that displays the score obtained by the player in the Trivia Question Database.
+ * @author byubjung kang
+ * @version 1.0
+ */
 public class TriviaScore extends AppCompatActivity {
 
-
+    /**
+     * The binding object for the TriviaScore activity layout, used to access UI elements.
+     */
     protected ActivityTriviaScoreBinding binding;
 
     @Override

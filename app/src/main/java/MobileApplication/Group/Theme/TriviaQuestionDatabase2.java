@@ -29,10 +29,22 @@ import java.util.Map;
 import MobileApplication.Group.R;
 import MobileApplication.Group.databinding.ActivityTriviaQuestionDatabase2Binding;
 
+
+/**
+ * An activity that allows the user to select quiz categories and start quizzes.
+ * @author byubjung kang
+ * @version 1.0
+ */
 public class TriviaQuestionDatabase2 extends AppCompatActivity {
 
+    /**
+     * The binding object for the activity layout.
+     */
     protected ActivityTriviaQuestionDatabase2Binding binding;
 
+    /**
+     * A mapping of categories to their corresponding API URLs.
+     */
     private static final Map<String, String> CATEGORY_URL_MAP = new HashMap<>();
     static {
         CATEGORY_URL_MAP.put("geography", "https://opentdb.com/api.php?amount=5&category=22");
@@ -40,10 +52,15 @@ public class TriviaQuestionDatabase2 extends AppCompatActivity {
         CATEGORY_URL_MAP.put("general", "https://opentdb.com/api.php?amount=5&category=9");
         CATEGORY_URL_MAP.put("celebrities", "https://opentdb.com/api.php?amount=5&category=26");
     }
+
+    /**
+     * The Volley request queue to handle API calls.
+     */
     RequestQueue queue = null;
 
     CardView geography, history, general, celebrities;
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -86,6 +103,11 @@ public class TriviaQuestionDatabase2 extends AppCompatActivity {
         binding.uNameText2.setText(getString(R.string.player) + userName);
     };
 
+    /**
+     * Shows the quiz fragment for the specified category.
+     *
+     * @param category The category for which to show the quiz fragment.
+     */
     private void showQuizFragment(String category) {
 
         String url = CATEGORY_URL_MAP.get(category);
@@ -98,6 +120,9 @@ public class TriviaQuestionDatabase2 extends AppCompatActivity {
                 .commit();
     }
 
+    /**
+     * Disables all the card views to prevent further selection after a quiz is started.
+     */
     private void disableAllCard() {
         geography.setEnabled(false);
         history.setEnabled(false);

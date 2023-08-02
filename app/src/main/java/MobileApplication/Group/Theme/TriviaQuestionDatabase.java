@@ -16,9 +16,16 @@ import android.widget.Toast;
 import MobileApplication.Group.R;
 import MobileApplication.Group.databinding.ActivityTriviaQuestionDatabaseBinding;
 
-
+/**
+ * An activity that represents the trivia question database main screen.
+ * @author byubjung kang
+ * @version 1.0
+ */
 public class TriviaQuestionDatabase extends AppCompatActivity {
 
+    /**
+     * The binding object for the activity layout.
+     */
     protected ActivityTriviaQuestionDatabaseBinding binding;
 
 
@@ -113,6 +120,13 @@ public class TriviaQuestionDatabase extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * Checks the complexity of the user name by validating if it contains at least one uppercase letter,
+     * one lowercase letter, and no numbers or special characters.
+     *
+     * @param inputUName The user name to be checked.
+     * @return true if the user name is complex, false otherwise.
+     */
     boolean checkUNameComplexity(String inputUName) {
         boolean foundUpperCase, foundLowerCase, foundNumber, foundSpecial;
         foundUpperCase  = foundLowerCase = foundNumber = foundSpecial  = false;
@@ -144,6 +158,13 @@ public class TriviaQuestionDatabase extends AppCompatActivity {
 
         return true;
     }
+
+    /**
+     * Checks if the given character is a special character.
+     *
+     * @param c The character to be checked.
+     * @return true if the character is a special character, false otherwise.
+     */
     boolean isSpecialCharacter(char c) {
         switch (c) {
             case '#':

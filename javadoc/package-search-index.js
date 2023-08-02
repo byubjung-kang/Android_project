@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"MobileApplication.Group.Data"},{"l":"MobileApplication.Group.databinding"},{"l":"MobileApplication.Group.Theme"}];updateSearchResults();
