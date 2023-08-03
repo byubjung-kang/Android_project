@@ -1,5 +1,6 @@
 package MobileApplication.Group.Theme;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
 import android.util.Log;
@@ -42,7 +43,7 @@ public class AviationStackFlightTracker extends AppCompatActivity implements Fli
     private RequestQueue queue;
     private FlightAdapter flightAdapter;
     private List<Flight> flightDetailsList;
-    protected ArrayList<Flight> theFlight;
+//    protected ArrayList<Flight> theFlight;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +67,7 @@ public class AviationStackFlightTracker extends AppCompatActivity implements Fli
         binding.searchButton.setOnClickListener(click -> {
             String airportCode = binding.flightSearch.getText().toString();
             try {
-                String url = "http://api.aviationstack.com/v1/flights?access_key=7a7d33e5d77d662f1e50625584b2871e&dep_iata=" +
+                String url = "http://api.aviationstack.com/v1/flights?access_key=5094d7dde2c03e12ac20060cc9109b7a&dep_iata=" +
                         URLEncoder.encode(airportCode, "UTF-8");
 
                 JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
@@ -154,14 +155,8 @@ public class AviationStackFlightTracker extends AppCompatActivity implements Fli
 
     @Override
     public void onFlightClick(Flight flight) {
-        // Show the FlightDetailsFragment
-//        FlightDetailsFragment detailsFragment = FlightDetailsFragment(
-//                flight.getAirlineName(), flight.getFlightNumber(), flight.getDestinationAirport(),
-//                flight.getDepartureTime(), flight.getTerminal(), flight.getGate(), flight.getDelay());
-
         // Show the FlightDetailsFragment with the selected flight's details
         FlightDetailsFragment detailsFragment = new FlightDetailsFragment(flight);
-
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragmentLocation, detailsFragment)
                 .addToBackStack(null)
@@ -169,4 +164,11 @@ public class AviationStackFlightTracker extends AppCompatActivity implements Fli
     }
 
 
+//
+    public void onSavedFlightsButtonClick(View view) {
+            Intent intent = new Intent(this, SavedFlightsActivity.class);
+            startActivity(intent);
+        }
+
 }
+

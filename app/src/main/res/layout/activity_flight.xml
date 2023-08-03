@@ -7,7 +7,6 @@
     tools:context=".Theme.AviationStackFlightTracker"
     android:background="@color/my_primary">
 
-
     <FrameLayout
         android:id="@+id/fragmentLocation"
         android:layout_width="match_parent"
@@ -24,53 +23,62 @@
 
             <!-- RecyclerView to display the list of flights -->
 
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/resultRecyclerView"
-                android:layout_width="311dp"
-                android:layout_height="449dp"
-                android:layout_marginTop="10dp"
+                android:layout_width="417dp"
+                android:layout_height="483dp"
 
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/imageView4"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/searchButton"
-                app:layout_constraintVertical_bias="0.23" />
+                app:layout_constraintTop_toBottomOf="@+id/searchButton" />
 
             <TextView
                 android:id="@+id/textView"
-                android:layout_width="265dp"
-                android:layout_height="38dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="Input your search:"
-                android:textSize="25dp"
+                android:textSize="25sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.652"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
                 android:id="@+id/flightSearch"
-                android:layout_width="288dp"
-                android:layout_height="64dp"
-                android:layout_marginTop="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:hint="Enter airport code"
                 android:inputType="text"
-                app:layout_constraintEnd_toStartOf="@+id/searchButton"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.451"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView" />
 
             <Button
                 android:id="@+id/searchButton"
-                android:layout_width="117dp"
-                android:layout_height="53dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="280dp"
+                android:onClick="onSearchButtonClick"
                 android:text="SEARCH"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView" />
+                app:layout_constraintTop_toBottomOf="@+id/flightSearch" />
+
+            <Button
+                android:id="@+id/saveFlightsButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="28dp"
+                android:onClick="onSavedFlightsButtonClick"
+                android:text="Saved Flights"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/flightSearch" />
 
             <ImageView
                 android:id="@+id/imageView4"
@@ -80,10 +88,9 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/resultRecyclerView"
+                app:layout_constraintTop_toBottomOf="@+id/saveFlightsButton"
                 app:layout_constraintVertical_bias="1.0"
                 app:srcCompat="@drawable/flight" />
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>
