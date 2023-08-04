@@ -1,5 +1,6 @@
 package MobileApplication.Group.Theme;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -22,7 +23,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -59,11 +59,7 @@ public class CurrencyConverterActivity extends AppCompatActivity {
 
     private ActivityCurrencyConverterBinding binding;
     private EditText inputAmount;
-    private Button convertButton;
-    private Button saveBtn;
-    private Button viewAllBtn;
     private TextView convertedAmount;
-    private CurrencyAdapter cAdapter;
     private CurrencySpinner spinnerTo;
     private String clickedCountryTo;
     private CurrencySpinner spinnerFrom;
@@ -74,9 +70,10 @@ public class CurrencyConverterActivity extends AppCompatActivity {
     private CurrencyViewModel currencyModel;
     private RecyclerView.Adapter myAdapter;
     ConversionHistoryDAO myDAO;
-    private ArrayList<ConversionHistory> savedConversions = new ArrayList<>();
+    private final ArrayList<ConversionHistory> savedConversions = new ArrayList<>();
 
 
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,16 +92,11 @@ public class CurrencyConverterActivity extends AppCompatActivity {
                 tx.addToBackStack(null);
                 tx.commit();
             }});
-        currencyModel.conversions.observe(this, updatedConversions -> {
-            myAdapter.notifyDataSetChanged();
-        });
+        currencyModel.conversions.observe(this, updatedConversions -> myAdapter.notifyDataSetChanged());
 
-        currencyModel.conversions.observe(this, new Observer<ArrayList<ConversionHistory>>() {
-            @Override
-            public void onChanged(ArrayList<ConversionHistory> updatedConversions) {
-                conversions = updatedConversions;
-                myAdapter.notifyDataSetChanged();
-            }
+        currencyModel.conversions.observe(this, updatedConversions -> {
+            conversions = updatedConversions;
+            myAdapter.notifyDataSetChanged();
         });
 
         if (currencyModel.conversions.getValue() == null) {
@@ -122,55 +114,48 @@ public class CurrencyConverterActivity extends AppCompatActivity {
 
         inputAmount = findViewById(R.id.editTextNumberDecimal);
         convertedAmount = findViewById(R.id.textViewTo);
-        convertButton = findViewById(R.id.convertBtn);
-        saveBtn = findViewById(R.id.saveBtn);
-        viewAllBtn = findViewById(R.id.viewAll);
+        Button convertButton = findViewById(R.id.convertBtn);
+        Button saveBtn = findViewById(R.id.saveBtn);
+        Button viewAllBtn = findViewById(R.id.viewAll);
 
-        saveBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                double amount = Double.parseDouble(inputAmount.getText().toString());
-                String fromCurrency = clickedCountryFrom;
-                String toCurrency = clickedCountryTo;
-                String convertedAmountStr = convertedAmount.getText().toString();
-                double convertedAmount = Double.parseDouble(convertedAmountStr);
+        saveBtn.setOnClickListener(v -> {
+            double amount = Double.parseDouble(inputAmount.getText().toString());
+            String fromCurrency = clickedCountryFrom;
+            String toCurrency = clickedCountryTo;
+            String convertedAmountStr = convertedAmount.getText().toString();
+            double convertedAmount = Double.parseDouble(convertedAmountStr);
 
-                // Check if the conversion is not already present in the list
-                ConversionHistory existingConversion = findExistingConversion(fromCurrency, toCurrency, amount, convertedAmount);
-                if (existingConversion == null) {
-                    // Create a new ConversionHistory object and add it to the list
-                    ConversionHistory conversion = new ConversionHistory(fromCurrency, toCurrency, amount, convertedAmount);
+            // Check if the conversion is not already present in the list
+            ConversionHistory existingConversion = findExistingConversion(fromCurrency, toCurrency, amount, convertedAmount);
+            if (existingConversion == null) {
+                // Create a new ConversionHistory object and add it to the list
+                ConversionHistory conversion = new ConversionHistory(fromCurrency, toCurrency, amount, convertedAmount);
 
-                    // Set id to -1 to indicate it's not yet saved
-                    conversion.id = 0;
+                // Set id to -1 to indicate it's not yet saved
+                conversion.id = 0;
 
-                    conversions.add(conversion);
+                conversions.add(conversion);
 
-                    // Notify the adapter of the data change
-                    myAdapter.notifyDataSetChanged();
+                // Notify the adapter of the data change
+                myAdapter.notifyDataSetChanged();
 
-                    // Insert the conversion to the database using a background thread
-                    Executor thread = Executors.newSingleThreadExecutor();
-                    thread.execute(() -> {
-                        long id = myDAO.insertConversion(conversion);
-                        // Update the id with the returned value from the database
-                        conversion.id = id;
-                    });
-                } else {
-                    // Conversion already exists in the list
-                    Toast.makeText(CurrencyConverterActivity.this, "Conversion already saved.", Toast.LENGTH_SHORT).show();
-                }
-                saveConversionsToSharedPreferences(conversions);
+                // Insert the conversion to the database using a background thread
+                Executor thread = Executors.newSingleThreadExecutor();
+                thread.execute(() -> {
+                    // Update the id with the returned value from the database
+                    conversion.id = myDAO.insertConversion(conversion);
+                });
+            } else {
+                // Conversion already exists in the list
+                Toast.makeText(CurrencyConverterActivity.this, "Conversion already saved.", Toast.LENGTH_SHORT).show();
             }
+            saveConversionsToSharedPreferences(conversions);
         });
 
 
-        viewAllBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Show only the saved conversions (from the 'conversions' list)
-                showSavedConversions();
-            }
+        viewAllBtn.setOnClickListener(v -> {
+            // Show only the saved conversions (from the 'conversions' list)
+            showSavedConversions();
         });
 
         ArrayList<ConversionHistory> savedConversions = loadConversionsFromSharedPreferences();
@@ -184,7 +169,7 @@ public class CurrencyConverterActivity extends AppCompatActivity {
         Spinner spinnerFromCountry = findViewById(R.id.spinnerFrom);
         Spinner spinnerToCountry = findViewById(R.id.spinnerTo);
 
-        cAdapter = new CurrencyAdapter(this, countrySpinnerList);
+        CurrencyAdapter cAdapter = new CurrencyAdapter(this, countrySpinnerList);
         spinnerFromCountry.setAdapter(cAdapter);
         spinnerToCountry.setAdapter(cAdapter);
 
@@ -220,7 +205,7 @@ public class CurrencyConverterActivity extends AppCompatActivity {
             String amountEditText = binding.editTextNumberDecimal.getText().toString();
             SharedPreferences.Editor editor = prefs.edit();
             editor.putString("InputAmount", amountEditText);
-            editor.commit();
+            editor.apply();
 
             double amount = Double.parseDouble(inputAmount.getText().toString());
 
@@ -416,6 +401,7 @@ public class CurrencyConverterActivity extends AppCompatActivity {
             countrySpinnerList.add(new CurrencySpinner("AUD", R.drawable.aud));
             countrySpinnerList.add(new CurrencySpinner("CAD", R.drawable.cad));
         }
+    @SuppressLint("NotifyDataSetChanged")
     private void showSavedConversions() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Saved Conversions");
