@@ -33,10 +33,13 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -157,6 +160,7 @@ public class CurrencyConverterActivity extends AppCompatActivity {
                     // Conversion already exists in the list
                     Toast.makeText(CurrencyConverterActivity.this, "Conversion already saved.", Toast.LENGTH_SHORT).show();
                 }
+                saveConversionsToSharedPreferences(conversions);
             }
         });
 
@@ -168,6 +172,11 @@ public class CurrencyConverterActivity extends AppCompatActivity {
                 showSavedConversions();
             }
         });
+
+        ArrayList<ConversionHistory> savedConversions = loadConversionsFromSharedPreferences();
+        if (savedConversions != null) {
+            conversions.addAll(savedConversions);
+        }
 
         SharedPreferences prefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
         inputAmount.setText(prefs.getString("InputAmount", ""));
@@ -467,7 +476,31 @@ public class CurrencyConverterActivity extends AppCompatActivity {
 
         builder.create().show();
     }
+    private void saveConversionsToSharedPreferences(ArrayList<ConversionHistory> conversions) {
+        // Convert the list of conversions to a JSON string
+        Gson gson = new Gson();
+        String json = gson.toJson(conversions);
 
+        // Save the JSON string to SharedPreferences
+        SharedPreferences prefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("SavedConversions", json);
+        editor.apply();
+    }
+
+    private ArrayList<ConversionHistory> loadConversionsFromSharedPreferences() {
+        SharedPreferences prefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
+        String json = prefs.getString("SavedConversions", null);
+
+        if (json != null) {
+            // Convert the JSON string back to a list of conversions
+            Gson gson = new Gson();
+            Type type = new TypeToken<ArrayList<ConversionHistory>>(){}.getType();
+            return gson.fromJson(json, type);
+        }
+
+        return null; // If no saved conversions are found
+    }
 
     private ConversionHistory findExistingConversion(String fromCurrency, String toCurrency, double amount, double convertedAmount) {
         for (ConversionHistory conversion : conversions) {
