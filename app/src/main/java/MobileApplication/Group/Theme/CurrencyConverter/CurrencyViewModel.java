@@ -1,5 +1,6 @@
 package MobileApplication.Group.Theme.CurrencyConverter;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -11,7 +12,6 @@ import MobileApplication.Group.Theme.Spinner.CurrencySpinner;
 
 public class CurrencyViewModel extends ViewModel {
 
-    public MutableLiveData<ArrayList<CurrencySpinner>> countrySpinnerList = new MutableLiveData< >();
-    public MutableLiveData<ArrayList<ConversionHistory>> conversionHistoryList = new MutableLiveData< >();
-
+    public MutableLiveData<ArrayList<ConversionHistory>> conversions = new MutableLiveData< >();
+    public MutableLiveData<ConversionHistory> selectedConversion = new MutableLiveData< >();
 }

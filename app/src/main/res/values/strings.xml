@@ -1,11 +1,16 @@
 <resources>
     <string name="app_name">CurrencyConverter</string>
     <string name="help">Help</string>
+    <string name="delete">Delete</string>
+    <string name="aviation">Aviation Stack Flight Tracker</string>
+    <string name="trivia">Trivia Question</string>
+    <string name="bear">Bear Image Generator</string>
     <string name="convert_button">Convert</string>
     <string name="from">From</string>
     <string name="to">To</string>
     <string name="enter_amount">Enter Amount</string>
     <string name="save_button">Save</string>
+    <string name="save_button2">View All</string>
     <string name="delete_confirmation_message">Do you want to delete this conversion history entry?</string>
     <string name="delete_confirmation_title">Delete Confirmation</string>
     <string name="no">No</string>
