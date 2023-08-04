@@ -26,6 +26,7 @@
         android:id="@+id/imageFlag"
         android:layout_width="64dp"
         android:layout_height="52dp"
+        android:layout_marginStart="4dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/aud" />

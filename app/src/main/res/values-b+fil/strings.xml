@@ -3,11 +3,16 @@
 <resources>
     <string name="app_name">Konbert</string>
     <string name="help">Tulong</string>
+    <string name="delete">Burahin</string>
+    <string name="aviation">Salansan ng Tagasubaybay ng Eroplano</string>
+    <string name="trivia">Tribyang Tanong</string>
+    <string name="bear">Tagabuo ng Larawan ng Oso</string>
     <string name="convert_button">Konbert</string>
-    <string name="from">Mula sa</string>
-    <string name="to">Papunta sa</string>
+    <string name="from">Konbert Mula sa</string>
+    <string name="to">Konbert Papunta sa</string>
     <string name="enter_amount">Ipasok ang Halaga</string>
     <string name="save_button">Isilid</string>
+    <string name="save_button2">Ipakita lahat</string>
     <string name="undo">I-Undo</string>
     <string name="delete_confirmation_message">Gusto mo bang burahin ang konbersyon na ito?</string>
     <string name="delete_confirmation_title">Kumpirmasyon ng Pagbura</string>
