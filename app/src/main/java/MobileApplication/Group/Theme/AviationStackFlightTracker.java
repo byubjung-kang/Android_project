@@ -39,7 +39,7 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 import MobileApplication.Group.R;
-
+import MobileApplication.Group.databinding.ActivityFlightBinding;
 
 
 public class AviationStackFlightTracker extends AppCompatActivity implements FlightAdapter.FlightClickListener {
@@ -57,8 +57,7 @@ public class AviationStackFlightTracker extends AppCompatActivity implements Fli
         setContentView(binding.getRoot());
 
 
-     setSupportActionBar(binding.myToolbar);
-
+        setSupportActionBar(binding.toolbar);
 
 
         // Initialize the RecyclerView and its adapter
@@ -108,7 +107,7 @@ public class AviationStackFlightTracker extends AppCompatActivity implements Fli
                                             String terminal = departure.optString("terminal", "N/A");
 
                                             // Create a new Flight object and set the additional details
-                                            Flight flight = new Flight(airlineName,flightNumber,destinationAirport,terminal,delay,gate);
+                                            Flight flight = new Flight(airlineName, flightNumber, destinationAirport, terminal, delay, gate);
 
                                             flight.getAirlineName();
                                             flight.getFlightNumber();
@@ -160,7 +159,6 @@ public class AviationStackFlightTracker extends AppCompatActivity implements Fli
     }
 
 
-
     @Override
     public void onFlightClick(Flight flight) {
         // Show the FlightDetailsFragment with the selected flight's details
@@ -172,11 +170,11 @@ public class AviationStackFlightTracker extends AppCompatActivity implements Fli
     }
 
 
-//
+    //
     public void onSavedFlightsButtonClick(View view) {
-            Intent intent = new Intent(this, SavedFlightsActivity.class);
-            startActivity(intent);
-        }
+        Intent intent = new Intent(this, SavedFlightsActivity.class);
+        startActivity(intent);
+    }
 
 
     @Override
@@ -186,15 +184,23 @@ public class AviationStackFlightTracker extends AppCompatActivity implements Fli
     }
 
 
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
+
         if (id == R.id.action_help) {
             showHelpDialog();
             return true;
+        } else if (id == R.id.item_about) {
+            // Show a Snackbar with the application version and creator information
+            Snackbar.make(findViewById(android.R.id.content),
+                    "Application version 1.0, created by Linh VO", Snackbar.LENGTH_SHORT).show();
+            return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
+
+
 
     private void showHelpDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -202,13 +208,11 @@ public class AviationStackFlightTracker extends AppCompatActivity implements Fli
         builder.setMessage("Instructions:\n\n" +
                 "- Enter the airport code in the search box.\n" +
                 "- Tap on a flight to view its details.\n" +
-                "- Use the Save and Delete buttons to manage saved flights.");
+                        "- Use the Save and Delete buttons to manage saved flights.\n" +
+                "- Click to Saved Flight to see all flights in database.");
         builder.setPositiveButton("OK", (dialog, which) -> dialog.dismiss());
         AlertDialog dialog = builder.create();
         dialog.show();
     }
-
-
-
 }
 

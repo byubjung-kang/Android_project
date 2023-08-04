@@ -11,6 +11,6 @@ xmlns:android="http://schemas.android.com/apk/res/android">
 <item
     android:id="@+id/item_about"
     android:title="About"
-
-    app:showAsAction="never" />
+android:icon="@drawable/flighticon"
+    app:showAsAction="always" />
 </menu>
