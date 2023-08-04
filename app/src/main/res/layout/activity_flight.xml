@@ -6,6 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".Theme.AviationStackFlightTracker"
     android:background="@color/my_primary">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/myToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <FrameLayout
         android:id="@+id/fragmentLocation"
@@ -39,12 +43,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Input your search:"
+                android:text="Track Flights Worldwide:"
                 android:textSize="25sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
 
             <EditText
                 android:id="@+id/flightSearch"
@@ -91,6 +96,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/saveFlightsButton"
                 app:layout_constraintVertical_bias="1.0"
                 app:srcCompat="@drawable/flight" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>

@@ -5,12 +5,15 @@ import android.os.Bundle;
 import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,6 +25,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,7 +39,7 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 import MobileApplication.Group.R;
-import MobileApplication.Group.databinding.ActivityFlightBinding;
+
 
 
 public class AviationStackFlightTracker extends AppCompatActivity implements FlightAdapter.FlightClickListener {
@@ -53,6 +57,10 @@ public class AviationStackFlightTracker extends AppCompatActivity implements Fli
         setContentView(binding.getRoot());
 
 
+     setSupportActionBar(binding.myToolbar);
+
+
+
         // Initialize the RecyclerView and its adapter
         RecyclerView recyclerView = findViewById(R.id.resultRecyclerView);
         flightDetailsList = new ArrayList<>();
@@ -67,7 +75,7 @@ public class AviationStackFlightTracker extends AppCompatActivity implements Fli
         binding.searchButton.setOnClickListener(click -> {
             String airportCode = binding.flightSearch.getText().toString();
             try {
-                String url = "http://api.aviationstack.com/v1/flights?access_key=5094d7dde2c03e12ac20060cc9109b7a&dep_iata=" +
+                String url = "http://api.aviationstack.com/v1/flights?access_key=9ad126b64d23dfc794eab0d96e9c3f6d&dep_iata=" +
                         URLEncoder.encode(airportCode, "UTF-8");
 
                 JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
@@ -169,6 +177,38 @@ public class AviationStackFlightTracker extends AppCompatActivity implements Fli
             Intent intent = new Intent(this, SavedFlightsActivity.class);
             startActivity(intent);
         }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_help) {
+            showHelpDialog();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void showHelpDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Help");
+        builder.setMessage("Instructions:\n\n" +
+                "- Enter the airport code in the search box.\n" +
+                "- Tap on a flight to view its details.\n" +
+                "- Use the Save and Delete buttons to manage saved flights.");
+        builder.setPositiveButton("OK", (dialog, which) -> dialog.dismiss());
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+
 
 }
 
