@@ -326,7 +326,7 @@ public class CurrencyConverterActivity extends AppCompatActivity {
 
         @Override
         public boolean onCreateOptionsMenu(Menu menu) {
-            getMenuInflater().inflate(R.menu.my_menu1, menu);
+            getMenuInflater().inflate(R.menu.my_menu, menu);
             return true;
         }
 
