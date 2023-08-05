@@ -49,14 +49,14 @@ public class FlightDetailsFragment extends Fragment {
             });
 
 
-            // Set OnClickListener for the "Delete Flight" button
-            binding.deleteButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // Call the method to delete the selected flight from the database
-                    deleteFlightFromDatabase(selectedFlight);
-                }
-            });
+//            // Set OnClickListener for the "Delete Flight" button
+//            binding.deleteButton.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    // Call the method to delete the selected flight from the database
+//                    deleteFlightFromDatabase(selectedFlight);
+//                }
+//            });
 
 
         }
@@ -82,21 +82,21 @@ public class FlightDetailsFragment extends Fragment {
     }
 
 
-    private void deleteFlightFromDatabase(Flight flight) {
-        // Run the database deletion on an executor thread
-        Executor thread = Executors.newSingleThreadExecutor();
-        thread.execute(() -> {
-            // Get the FlightDao instance from the FlightDatabase
-            FlightDatabase flightDatabase = Room.databaseBuilder(requireContext(), FlightDatabase.class, "flight-database").build();
-            FlightDao flightDao = flightDatabase.flightDao();
-
-            // Delete the selected flight from the database
-            flightDao.deleteFlight(flight);
-            // Show a toast message indicating that the flight was deleted
-            getActivity().runOnUiThread(() -> {
-                Toast.makeText(requireContext(), "Flight deleted from database!", Toast.LENGTH_SHORT).show();
-            });
-        });
-    }
+//    private void deleteFlightFromDatabase(Flight flight) {
+//        // Run the database deletion on an executor thread
+//        Executor thread = Executors.newSingleThreadExecutor();
+//        thread.execute(() -> {
+//            // Get the FlightDao instance from the FlightDatabase
+//            FlightDatabase flightDatabase = Room.databaseBuilder(requireContext(), FlightDatabase.class, "flight-database").build();
+//            FlightDao flightDao = flightDatabase.flightDao();
+//
+//            // Delete the selected flight from the database
+//            flightDao.deleteFlight(flight);
+//            // Show a toast message indicating that the flight was deleted
+//            getActivity().runOnUiThread(() -> {
+//                Toast.makeText(requireContext(), "Flight deleted from database!", Toast.LENGTH_SHORT).show();
+//            });
+//        });
+//    }
 
 }

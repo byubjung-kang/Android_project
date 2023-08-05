@@ -1,3 +1,33 @@
 <resources>
-    <string name="app_name">Android Project</string>
+    <string name="app_name">Flight Tracker</string>
+
+    <string name="world_in_your_hands">The Whole World in your Hands</string>
+    <string name="please_enter">Please enter</string>
+    <string name="search">SEARCH</string>
+    <string name="saved_flights">Saved Flights</string>
+
+    <!-- Flight details screen -->
+    <string name="your_flight_search_detail">Your flight search detail:</string>
+    <string name="flight_details">Flight Details</string>
+    <string name="flight_number">Flight Number</string>
+    <string name="destination">Destination</string>
+    <string name="terminal">Terminal</string>
+    <string name="delay">Delay</string>
+    <string name="gate">Gate</string>
+    <string name="save">SAVE</string>
+    <string name="delete">DELETE</string>
+
+    <!-- Help dialog -->
+    <string name="help_title">Help</string>
+    <string name="help_message">Instructions:\n\n
+        - Enter the airport code in the search box.\n
+        - Tap on a flight to view its details.\n
+        - Use the Save and Delete buttons to manage saved flights.\n
+        - Click on Saved Flights to see all flights in the database.</string>
+
+    <!-- Snackbar messages -->
+    <string name="about_snackbar">Application version 1.0, created by Linh VO</string>
+    <string name="no_flight_message">No departure flight found for airport code %1$s</string>
+    <string name="api_error_message">API Request Error</string>
+    <string name="unsupported_encoding">Unsupported Encoding Exception</string>
 </resources>

@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">Rastreador de Vuelos</string>
+    <string name="world_in_your_hands">El mundo entero en tus manos</string>
+    <string name="please_enter">Por favor ingresa</string>
+    <string name="search">BUSCAR</string>
+    <string name="saved_flights">Vuelos Guardados</string>
+
+    <!-- Flight details screen -->
+    <string name="your_flight_search_detail">Detalles de tu búsqueda de vuelo:</string>
+    <string name="flight_details">Detalles del Vuelo</string>
+    <string name="flight_number">Número de Vuelo</string>
+    <string name="destination">Destino</string>
+    <string name="terminal">Terminal</string>
+    <string name="delay">Retraso</string>
+    <string name="gate">Puerta</string>
+    <string name="save">GUARDAR</string>
+    <string name="delete">ELIMINAR</string>
+
+    <!-- Help dialog -->
+    <string name="help_title">Ayuda</string>
+    <string name="help_message">Instrucciones:\n\n
+        - Ingresa el código del aeropuerto en el cuadro de búsqueda.\n
+        - Toca un vuelo para ver sus detalles.\n
+        - Usa los botones Guardar y Eliminar para gestionar vuelos guardados.\n
+        - Haz clic en Vuelos Guardados para ver todos los vuelos en la base de datos.</string>
+
+    <!-- Snackbar messages -->
+    <string name="about_snackbar">Versión de la aplicación 1.0, creada por Linh VO</string>
+    <string name="no_flight_message">No se encontró ningún vuelo de salida para el código de aeropuerto %1$s</string>
+    <string name="api_error_message">Error en la solicitud a la API</string>
+    <string name="unsupported_encoding">Excepción de Codificación No Soportada</string>
+</resources>

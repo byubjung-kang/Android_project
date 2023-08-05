@@ -199,6 +199,7 @@ private SharedPreferences sharedPreferences; // Declare sharedPreferences variab
     }
 
 
+
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
@@ -208,7 +209,8 @@ private SharedPreferences sharedPreferences; // Declare sharedPreferences variab
         } else if (id == R.id.item_about) {
             // Show a Snackbar with the application version and creator information
             Snackbar.make(findViewById(android.R.id.content),
-                    "Application version 1.0, created by Linh VO", Snackbar.LENGTH_SHORT).show();
+                    getString(R.string.about_snackbar), Snackbar.LENGTH_SHORT).show();
+//                    "Application version 1.0, created by Linh VO", Snackbar.LENGTH_SHORT).show();
             return true;
         }
 
@@ -217,17 +219,27 @@ private SharedPreferences sharedPreferences; // Declare sharedPreferences variab
 
 
 
-    private void showHelpDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Help");
-        builder.setMessage("Instructions:\n\n" +
-                "- Enter the airport code in the search box.\n" +
-                "- Tap on a flight to view its details.\n" +
-                        "- Use the Save and Delete buttons to manage saved flights.\n" +
-                "- Click to Saved Flight to see all flights in database.");
-        builder.setPositiveButton("OK", (dialog, which) -> dialog.dismiss());
-        AlertDialog dialog = builder.create();
-        dialog.show();
-    }
+
+    //    private void showHelpDialog() {
+//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//        builder.setTitle("Help");
+//        builder.setMessage("Instructions:\n\n" +
+//                "- Enter the airport code in the search box.\n" +
+//                "- Tap on a flight to view its details.\n" +
+//                        "- Use the Save and Delete buttons to manage saved flights.\n" +
+//                "- Click to Saved Flight to see all flights in database.");
+//        builder.setPositiveButton("OK", (dialog, which) -> dialog.dismiss());
+//        AlertDialog dialog = builder.create();
+//        dialog.show();
+//    }
+private void showHelpDialog() {
+    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+    builder.setTitle(R.string.help_title);
+    builder.setMessage(getString(R.string.help_message));
+    builder.setPositiveButton("OK", (dialog, which) -> dialog.dismiss());
+    AlertDialog dialog = builder.create();
+    dialog.show();
+}
+
 }
 

@@ -7,7 +7,7 @@
     android:background="@color/my_primary">
 
     <TextView
-        android:id="@+id/flightTitleTextView"
+        android:id="@+id/flightTitleTextView1"
         android:layout_width="336dp"
         android:layout_height="43dp"
         android:layout_marginTop="32dp"
@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/flightDetailsTextView"
+        android:id="@+id/flightDetailsTextView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -27,91 +27,79 @@
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.187"
-        app:layout_constraintStart_toStartOf="@id/flightTitleTextView"
-        app:layout_constraintTop_toBottomOf="@id/flightTitleTextView" />
+        app:layout_constraintStart_toStartOf="@id/flightTitleTextView1"
+        app:layout_constraintTop_toBottomOf="@id/flightTitleTextView1" />
 
     <TextView
-        android:id="@+id/flightNumberTextView"
+        android:id="@+id/flightNumberTextView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="@string/flight_number"
 
         android:textSize="20dp"
-        app:layout_constraintStart_toStartOf="@+id/flightDetailsTextView"
-        app:layout_constraintTop_toBottomOf="@id/flightDetailsTextView" />
+        app:layout_constraintStart_toStartOf="@+id/flightDetailsTextView1"
+        app:layout_constraintTop_toBottomOf="@id/flightDetailsTextView1" />
 
 
     <TextView
-        android:id="@+id/destinationTextView"
+        android:id="@+id/destinationTextView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
         android:layout_marginTop="20dp"
         android:text="@string/destination"
         android:textSize="20dp"
-        app:layout_constraintStart_toStartOf="@+id/flightNumberTextView"
-        app:layout_constraintTop_toBottomOf="@id/flightNumberTextView" />
+        app:layout_constraintStart_toStartOf="@+id/flightNumberTextView1"
+        app:layout_constraintTop_toBottomOf="@id/flightNumberTextView1" />
 
     <TextView
-        android:id="@+id/terminalTextView"
+        android:id="@+id/terminalTextView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="@string/terminal"
 
         android:textSize="20dp"
-        app:layout_constraintStart_toStartOf="@+id/destinationTextView"
-        app:layout_constraintTop_toBottomOf="@+id/destinationTextView" />
+        app:layout_constraintStart_toStartOf="@+id/destinationTextView1"
+        app:layout_constraintTop_toBottomOf="@+id/destinationTextView1" />
 
 
     <TextView
 
-        android:id="@+id/delayTextView"
+        android:id="@+id/delayTextView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="@string/delay"
         android:textSize="20dp"
-        app:layout_constraintStart_toStartOf="@+id/terminalTextView"
-        app:layout_constraintTop_toBottomOf="@+id/terminalTextView" />
+        app:layout_constraintStart_toStartOf="@+id/terminalTextView1"
+        app:layout_constraintTop_toBottomOf="@+id/terminalTextView1" />
 
     <TextView
 
-        android:id="@+id/gateTextView"
+        android:id="@+id/gateTextView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="@string/gate"
+        android:text="String/gate"
 
         android:textSize="20dp"
-        app:layout_constraintStart_toStartOf="@+id/delayTextView"
-        app:layout_constraintTop_toBottomOf="@+id/delayTextView" />
+        app:layout_constraintStart_toStartOf="@+id/delayTextView1"
+        app:layout_constraintTop_toBottomOf="@+id/delayTextView1" />
 
 
     <Button
-        android:id="@+id/saveButton"
+        android:id="@+id/deleteButton1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:onClick="onSaveButtonClicked"
-        android:text="@string/save"
+        android:layout_marginTop="40dp"
+        android:onClick="onDeleteButtonClicked"
+        android:text="@string/delete"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gateTextView" />
-
-    <!--    <Button-->
-    <!--        android:id="@+id/deleteButton"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginTop="36dp"-->
-    <!--        android:onClick="onDeleteButtonClicked"-->
-    <!--        android:text="DELETE"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintHorizontal_bias="0.873"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@+id/gateTextView" />-->
+        app:layout_constraintTop_toBottomOf="@+id/gateTextView1" />
 
     <ImageView
         android:id="@+id/imageView5"
@@ -122,7 +110,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
 
-        app:layout_constraintTop_toBottomOf="@+id/saveButton"
+        app:layout_constraintTop_toBottomOf="@+id/deleteButton1"
 
         app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/flight2" />
