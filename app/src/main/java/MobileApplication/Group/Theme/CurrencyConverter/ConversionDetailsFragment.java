@@ -14,7 +14,14 @@ import MobileApplication.Group.databinding.ConversionLayoutBinding;
  * A fragment that displays details of a conversion history entry.
  */
 public class ConversionDetailsFragment extends Fragment {
+    /**
+     * ViewBinding object for layout. Allows access to the views in the layout file for this activity.
+     */
     private ConversionLayoutBinding binding; // ViewBinding object for the layout
+    /**
+     * The selected ConversionHistory object. The `selected` variable holds the currently selected
+     * `ConversionHistory` object in the RecyclerView. This object represents the currency conversion
+     */
     private ConversionHistory selected; // The selected conversion history entry
     /**
      * Constructor to create a new instance of the fragment with the provided conversion history.
