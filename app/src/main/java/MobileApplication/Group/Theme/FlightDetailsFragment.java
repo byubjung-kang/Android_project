@@ -15,16 +15,22 @@ import java.util.concurrent.Executors;
 import MobileApplication.Group.databinding.FragmentFlightDetailsBinding;
 
 
+/**
+ * A Fragment that displays details of a selected flight and provides options to save it to the database.
+ */
 public class FlightDetailsFragment extends Fragment {
 
     private FragmentFlightDetailsBinding binding;
     private Flight selectedFlight;
 
+    /**
+     * Constructs a FlightDetailsFragment with the selected flight.
+     *
+     * @param message The selected flight to display details for.
+     */
     public FlightDetailsFragment(Flight message) {
-        // Required empty public constructor
         selectedFlight = message;
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

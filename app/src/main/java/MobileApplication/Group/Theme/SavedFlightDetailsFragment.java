@@ -16,16 +16,22 @@ import java.util.concurrent.Executors;
 import MobileApplication.Group.databinding.FragmentFlightDetailsSavedFlightBinding;
 
 
+/**
+ * A Fragment that displays details of a saved flight and provides an option to delete it from the database.
+ */
 public class SavedFlightDetailsFragment extends Fragment {
 
     private @NonNull FragmentFlightDetailsSavedFlightBinding binding;
     private Flight selectedFlight;
 
+    /**
+     * Constructs a SavedFlightDetailsFragment with the selected saved flight.
+     *
+     * @param message The selected saved flight to display details for.
+     */
     public SavedFlightDetailsFragment(Flight message) {
-        // Required empty public constructor
         selectedFlight = message;
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

@@ -7,7 +7,9 @@ import androidx.room.Dao;
 import androidx.room.Entity;
 import androidx.room.Insert;
 import androidx.room.PrimaryKey;
-
+/**
+ * Represents a flight with its associated details.
+ */
 @Entity
 public class Flight {
     @PrimaryKey(autoGenerate = true)
@@ -30,7 +32,16 @@ public class Flight {
     private String gate;
     @ColumnInfo
     private String delay;
-
+    /**
+     * Constructs a Flight object with the provided details.
+     *
+     * @param airlineName       The name of the airline.
+     * @param flightNumber      The flight number.
+     * @param destinationAirport The destination airport code.
+     * @param terminal          The terminal information.
+     * @param delay             The delay information.
+     * @param gate              The gate information.
+     */
     public Flight(String airlineName, String flightNumber, String destinationAirport, String terminal, String delay, String gate) {
         this.airlineName = airlineName;
         this.flightNumber = flightNumber;

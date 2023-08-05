@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,6 +16,9 @@ import java.util.concurrent.Executors;
 
 import MobileApplication.Group.R;
 
+/**
+ * An activity that displays a list of saved flights and provides options to view their details.
+ */
 public class SavedFlightsActivity extends AppCompatActivity implements FlightAdapter.FlightClickListener {
 
     private RecyclerView recyclerView;
@@ -30,7 +32,6 @@ public class SavedFlightsActivity extends AppCompatActivity implements FlightAda
 
         recyclerView = findViewById(R.id.savedFlightsRecyclerView);
         savedFlights = new ArrayList<>();
-
 
         flightAdapter = new FlightAdapter(savedFlights, this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -46,12 +47,15 @@ public class SavedFlightsActivity extends AppCompatActivity implements FlightAda
         loadSavedFlights();
     }
 
+    /**
+     * Loads saved flights from the database and updates the UI.
+     */
     private void loadSavedFlights() {
         Executor thread = Executors.newSingleThreadExecutor();
         thread.execute(() -> {
             FlightDatabase flightDatabase = Room.databaseBuilder(this, FlightDatabase.class, "flight-database").build();
             FlightDao flightDao = flightDatabase.flightDao();
-            List<Flight> flights = flightDao.getAllFlight();
+            List<Flight> flights = flightDao.getAllFlights();
             runOnUiThread(() -> {
                 savedFlights.clear();
                 savedFlights.addAll(flights);
@@ -60,26 +64,27 @@ public class SavedFlightsActivity extends AppCompatActivity implements FlightAda
         });
     }
 
-
-
     @Override
     public void onFlightClick(Flight flight) {
-       //  Show the FlightDetailsFragment with the selected flight's details
+        // Show the FlightDetailsFragment with the selected flight's details
         FlightDetailsFragment detailsFragment = new FlightDetailsFragment(flight);
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragmentLocation, detailsFragment) // Use fragmentLocation2
                 .addToBackStack(null)
                 .commit();
-//        onFlightClickFromSavedFlight(flight);
     }
 
+    /**
+     * Handles the click event from saved flight items in the list.
+     *
+     * @param flight The selected saved flight.
+     */
     public void onFlightClickFromSavedFlight(Flight flight) {
-        // Show the FlightDetailsFragment with the selected flight's details
-        SavedFlightDetailsFragment detailsFragments = new SavedFlightDetailsFragment(flight);
+        // Show the SavedFlightDetailsFragment with the selected flight's details
+        SavedFlightDetailsFragment detailsFragment = new SavedFlightDetailsFragment(flight);
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragmentLocation, detailsFragments) // Use fragmentLocation
+                .replace(R.id.fragmentLocation, detailsFragment) // Use fragmentLocation
                 .addToBackStack(null)
                 .commit();
     }
-
 }

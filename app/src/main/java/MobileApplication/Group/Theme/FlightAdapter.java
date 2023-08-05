@@ -12,16 +12,24 @@ import java.util.List;
 
 import MobileApplication.Group.R;
 
+/**
+ * An adapter for displaying flight information in a RecyclerView.
+ */
 public class FlightAdapter extends RecyclerView.Adapter<FlightAdapter.FlightViewHolder> {
 
     private List<Flight> flightList;
     private FlightClickListener flightClickListener;
 
+    /**
+     * Constructs a FlightAdapter with the provided flight list and click listener.
+     *
+     * @param flightList         The list of flights to display.
+     * @param flightClickListener The listener for handling flight item clicks.
+     */
     public FlightAdapter(List<Flight> flightList, FlightClickListener flightClickListener) {
         this.flightList = flightList;
         this.flightClickListener = flightClickListener;
     }
-
 
     @NonNull
     @Override
@@ -30,27 +38,10 @@ public class FlightAdapter extends RecyclerView.Adapter<FlightAdapter.FlightView
         return new FlightViewHolder(view);
     }
 
-//    @Override
-//    public void onBindViewHolder(@NonNull FlightViewHolder holder, int position) {
-//        Flight flight = flightList.get(position);
-//        String flightDetails =  "Flight # : " + flight.getFlightNumber() + " - " + flight.getAirlineName() ;
-//
-////        String flightDetails = "Flight name: " + flight.getAirlineName() + " " + flight.getFlightNumber() +
-////                "\nDeparture Airport: " + flight.getDepartureAirport() +
-////                "\nScheduled Departure Time: " + flight.getDepartureTime();
-//        holder.flightInfoTextView.setText(flightDetails);
-//
-//        holder.itemView.setOnClickListener(v -> {
-//            // Handle item click here
-//            flightClickListener.onFlightClick(flight);
-//        });
-//    }
-
-
     @Override
     public void onBindViewHolder(@NonNull FlightViewHolder holder, int position) {
         Flight flight = flightList.get(position);
-        String flightDetails =  "Flight # : " + flight.getFlightNumber() + " - " + flight.getAirlineName() ;
+        String flightDetails = "Flight # : " + flight.getFlightNumber() + " - " + flight.getAirlineName();
 
         holder.flightInfoTextView.setText(flightDetails);
 
@@ -67,12 +58,14 @@ public class FlightAdapter extends RecyclerView.Adapter<FlightAdapter.FlightView
         });
     }
 
-
     @Override
     public int getItemCount() {
         return flightList.size();
     }
 
+    /**
+     * ViewHolder class for holding flight item views.
+     */
     public class FlightViewHolder extends RecyclerView.ViewHolder {
         TextView flightInfoTextView;
 
@@ -87,6 +80,11 @@ public class FlightAdapter extends RecyclerView.Adapter<FlightAdapter.FlightView
         void onFlightClick(Flight flight);
     }
 
+    /**
+     * Sets the flight click listener.
+     *
+     * @param flightClickListener The listener for handling flight item clicks.
+     */
     public void setFlightClickListener(FlightClickListener flightClickListener) {
         this.flightClickListener = flightClickListener;
     }

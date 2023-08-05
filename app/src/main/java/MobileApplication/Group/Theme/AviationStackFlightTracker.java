@@ -43,14 +43,22 @@ import MobileApplication.Group.R;
 import MobileApplication.Group.databinding.ActivityFlightBinding;
 
 
+/**
+ * This class represents the AviationStackFlightTracker activity, which allows users to search for flight details
+ * using the AviationStack API and display the results in a RecyclerView.
+ */
 public class AviationStackFlightTracker extends AppCompatActivity implements FlightAdapter.FlightClickListener {
 
     private RequestQueue queue;
     private FlightAdapter flightAdapter;
     private List<Flight> flightDetailsList;
-//    protected ArrayList<Flight> theFlight;
-private SharedPreferences sharedPreferences; // Declare sharedPreferences variable
+    private SharedPreferences sharedPreferences;
 
+    /**
+     * Called when the activity is created. Initializes UI components, sets up listeners, and handles API requests.
+     *
+     * @param savedInstanceState The saved instance state bundle.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
