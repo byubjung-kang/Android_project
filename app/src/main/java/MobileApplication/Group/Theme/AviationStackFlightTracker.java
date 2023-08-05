@@ -1,6 +1,7 @@
 package MobileApplication.Group.Theme;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Message;
 import android.util.Log;
@@ -48,6 +49,7 @@ public class AviationStackFlightTracker extends AppCompatActivity implements Fli
     private FlightAdapter flightAdapter;
     private List<Flight> flightDetailsList;
 //    protected ArrayList<Flight> theFlight;
+private SharedPreferences sharedPreferences; // Declare sharedPreferences variable
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +61,11 @@ public class AviationStackFlightTracker extends AppCompatActivity implements Fli
 
         setSupportActionBar(binding.toolbar);
 
+// Initialize sharedPreferences
+        sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+// Retrieve the saved search term
+        String savedSearchTerm = sharedPreferences.getString("searchTerm", "");
+        binding.flightSearch.setText(savedSearchTerm); // Set the saved search term in the search field
 
         // Initialize the RecyclerView and its adapter
         RecyclerView recyclerView = findViewById(R.id.resultRecyclerView);
@@ -72,8 +79,16 @@ public class AviationStackFlightTracker extends AppCompatActivity implements Fli
         queue = Volley.newRequestQueue(this);
 
         binding.searchButton.setOnClickListener(click -> {
+
+
             String airportCode = binding.flightSearch.getText().toString();
             try {
+
+                // Save the search term using SharedPreferences
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("searchTerm", airportCode);
+                editor.apply();
+
                 String url = "http://api.aviationstack.com/v1/flights?access_key=9ad126b64d23dfc794eab0d96e9c3f6d&dep_iata=" +
                         URLEncoder.encode(airportCode, "UTF-8");
 

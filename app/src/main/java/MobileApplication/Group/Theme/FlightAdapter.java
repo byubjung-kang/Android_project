@@ -22,6 +22,7 @@ public class FlightAdapter extends RecyclerView.Adapter<FlightAdapter.FlightView
         this.flightClickListener = flightClickListener;
     }
 
+
     @NonNull
     @Override
     public FlightViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -29,19 +30,40 @@ public class FlightAdapter extends RecyclerView.Adapter<FlightAdapter.FlightView
         return new FlightViewHolder(view);
     }
 
+//    @Override
+//    public void onBindViewHolder(@NonNull FlightViewHolder holder, int position) {
+//        Flight flight = flightList.get(position);
+//        String flightDetails =  "Flight # : " + flight.getFlightNumber() + " - " + flight.getAirlineName() ;
+//
+////        String flightDetails = "Flight name: " + flight.getAirlineName() + " " + flight.getFlightNumber() +
+////                "\nDeparture Airport: " + flight.getDepartureAirport() +
+////                "\nScheduled Departure Time: " + flight.getDepartureTime();
+//        holder.flightInfoTextView.setText(flightDetails);
+//
+//        holder.itemView.setOnClickListener(v -> {
+//            // Handle item click here
+//            flightClickListener.onFlightClick(flight);
+//        });
+//    }
+
+
     @Override
     public void onBindViewHolder(@NonNull FlightViewHolder holder, int position) {
         Flight flight = flightList.get(position);
         String flightDetails =  "Flight # : " + flight.getFlightNumber() + " - " + flight.getAirlineName() ;
 
-//        String flightDetails = "Flight name: " + flight.getAirlineName() + " " + flight.getFlightNumber() +
-//                "\nDeparture Airport: " + flight.getDepartureAirport() +
-//                "\nScheduled Departure Time: " + flight.getDepartureTime();
         holder.flightInfoTextView.setText(flightDetails);
 
         holder.itemView.setOnClickListener(v -> {
             // Handle item click here
-            flightClickListener.onFlightClick(flight);
+            if (flightClickListener != null) {
+                flightClickListener.onFlightClick(flight);
+                if (v.getContext() instanceof MainActivity) {
+                    ((AviationStackFlightTracker) v.getContext()).onFlightClick(flight);
+                } else if (v.getContext() instanceof SavedFlightsActivity) {
+                    ((SavedFlightsActivity) v.getContext()).onFlightClickFromSavedFlight(flight);
+                }
+            }
         });
     }
 

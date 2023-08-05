@@ -65,11 +65,12 @@ public class SavedFlightsActivity extends AppCompatActivity implements FlightAda
     @Override
     public void onFlightClick(Flight flight) {
         // Show the FlightDetailsFragment with the selected flight's details
-        FlightDetailsFragment detailsFragment = new FlightDetailsFragment(flight);
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragmentLocation, detailsFragment) // Use fragmentLocation2
-                .addToBackStack(null)
-                .commit();
+//        FlightDetailsFragment detailsFragment = new FlightDetailsFragment(flight);
+//        getSupportFragmentManager().beginTransaction()
+//                .replace(R.id.fragmentLocation, detailsFragment) // Use fragmentLocation2
+//                .addToBackStack(null)
+//                .commit();
+        onFlightClickFromSavedFlight(flight);
     }
 
     public void onFlightClickFromSavedFlight(Flight flight) {

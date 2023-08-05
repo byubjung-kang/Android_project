@@ -15,8 +15,6 @@ import java.util.concurrent.Executors;
 import MobileApplication.Group.databinding.FragmentFlightDetailsBinding;
 
 
-
-
 public class FlightDetailsFragment extends Fragment {
 
     private FragmentFlightDetailsBinding binding;
