@@ -30,4 +30,14 @@
     <string name="help">도움</string>
     <string name="wrong">틀렸어!</string>
     <string name="correct">맞았어!</string>
+
+    <string name="hello_message">안녕!</string>
+    <string name="button_message">로그인</string>
+    <string name="generateButton">생성</string>
+    <string name="textView2">길이</string>
+    <string name="textView3">넓이</string>
+    <string name="item_2">도움말</string>
+    <string name="currency">환율</string>
+    <string name="flight">비행기</string>
+    <string name="question">질문</string>
 </resources>

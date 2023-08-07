@@ -4,6 +4,9 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -30,7 +33,7 @@
             android:name=".Theme.AviationStackFlightTracker"
             android:exported="false" />
         <activity
-            android:name=".Theme.BearImageGenerator"
+            android:name=".Theme.BearImageGenerator.BearImageGenerator"
             android:exported="false" />
         <activity
             android:name=".Theme.TriviaQuestionDatabase"

@@ -37,5 +37,15 @@
     <string name="correct">correct answer!</string>
     <string name="help">Help</string>
 
+    <string name="hello_message">Hello world!</string>
+    <string name="button_message">LOGIN</string>
+    <string name="generateButton">Generate</string>
+    <string name="textView2">Height</string>
+    <string name="textView3">Width</string>
+    <string name="item_2">Help</string>
+    <string name="currency">currency</string>
+    <string name="flight">flight</string>
+    <string name="question">question</string>
+
 
 </resources>
