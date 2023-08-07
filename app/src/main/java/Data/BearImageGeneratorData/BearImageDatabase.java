@@ -9,7 +9,7 @@ import androidx.room.RoomDatabase;
 /**
  * Abstract class representing the Room Database for storing BearImage objects.
  */
-@Database(entities = {BearImage.class}, version=1)
+@Database(entities = {BearImage.class}, version=1, exportSchema = false)
 public abstract class BearImageDatabase extends RoomDatabase {
     /**
      * Retrieves the BearImageDAO instance.

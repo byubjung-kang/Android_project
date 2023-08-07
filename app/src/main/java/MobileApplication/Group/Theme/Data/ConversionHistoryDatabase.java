@@ -8,7 +8,7 @@ import androidx.room.RoomDatabase;
  * This class is annotated with @Database, specifying the list of entities
  * and the version number of the database schema.
  */
-@Database(entities ={ConversionHistory.class}, version=1)
+@Database(entities ={ConversionHistory.class}, version=1, exportSchema = false)
 public abstract class ConversionHistoryDatabase extends RoomDatabase {
 
 
