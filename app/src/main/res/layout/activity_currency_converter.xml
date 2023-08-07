@@ -1,18 +1,189 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Theme.CurrencyConverter">
+    android:orientation="horizontal"
+    tools:context="MobileApplication.Group.Theme.CurrencyConverterActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Currency converter"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/myToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="0dp"
+            android:background="#8294C4"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+       <FrameLayout
+           android:id="@+id/fragmentLocation"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:layout_below="@id/myToolbar">
+
+           <androidx.constraintlayout.widget.ConstraintLayout
+               android:layout_width="match_parent"
+               android:layout_height="match_parent">
+
+               <androidx.cardview.widget.CardView
+                   android:layout_width="412dp"
+                   android:layout_height="616dp"
+                   android:background="#FFEAD2"
+                   app:layout_constraintBottom_toBottomOf="parent"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   app:layout_constraintHorizontal_bias="1.0"
+                   app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintTop_toTopOf="parent"
+                   app:layout_constraintVertical_bias="0.333">
+
+                   <androidx.recyclerview.widget.RecyclerView
+                       android:id="@+id/recyclerView"
+                       android:layout_width="match_parent"
+                       android:layout_height="231dp"
+                       android:layout_marginTop="290dp" />
+
+                   <Button
+                       android:id="@+id/convertBtn"
+                       style="@style/Widget.AppCompat.Button"
+                       android:layout_width="399dp"
+                       android:layout_height="60dp"
+                       android:layout_marginStart="9dp"
+                       android:layout_marginTop="210dp"
+                       android:backgroundTint="#8294C4"
+                       android:text="@string/convert_button"
+                       android:textAlignment="center"
+                       android:textAllCaps="true"
+                       android:textColor="#DBDFEA"
+                       android:textSize="25sp"
+                       android:textStyle="bold" />
+
+                   <Button
+                       android:id="@+id/saveBtn"
+                       style="@style/Widget.AppCompat.Button"
+                       android:layout_width="179dp"
+                       android:layout_height="57dp"
+                       android:layout_marginStart="20dp"
+                       android:layout_marginTop="550dp"
+                       android:backgroundTint="#8294C4"
+                       android:text="@string/save_button"
+                       android:textAlignment="center"
+                       android:textColor="#DBDFEA"
+                       android:textSize="25sp"
+                       android:textStyle="bold" />
+
+                   <Button
+                       android:id="@+id/viewAll"
+                       style="@style/Widget.AppCompat.Button"
+                       android:layout_width="179dp"
+                       android:layout_height="57dp"
+                       android:layout_marginStart="210dp"
+                       android:layout_marginTop="550dp"
+                       android:backgroundTint="#8294C4"
+                       android:text="@string/save_button2"
+                       android:textAlignment="center"
+                       android:textColor="#DBDFEA"
+                       android:textSize="25sp"
+                       android:textStyle="bold" />
+
+                   <TextView
+                       android:id="@+id/textView1"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginStart="35dp"
+                       android:layout_marginTop="10dp"
+                       android:fontFamily="serif"
+                       android:text="@string/from"
+                       android:textAlignment="center"
+                       android:textColor="#050505"
+                       android:textSize="20sp"
+                       android:textStyle="bold" />
+
+                   <TextView
+                       android:id="@+id/textView2"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginStart="250dp"
+                       android:layout_marginTop="10dp"
+                       android:fontFamily="serif"
+                       android:text="@string/to"
+                       android:textAlignment="center"
+                       android:textColor="#000000"
+                       android:textSize="20sp"
+                       android:textStyle="bold" />
+
+                   <TextView
+                       android:id="@+id/textView3"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginStart="20dp"
+                       android:layout_marginTop="130dp"
+                       android:fontFamily="serif"
+                       android:text="@string/enter_amount"
+                       android:textAlignment="center"
+                       android:textColor="#000000"
+                       android:textSize="20sp"
+                       android:textStyle="bold" />
+
+                   <Spinner
+                       android:id="@+id/spinnerFrom"
+                       android:layout_width="138dp"
+                       android:layout_height="51dp"
+                       android:layout_marginStart="35dp"
+                       android:layout_marginTop="40dp"
+                       android:scrollbars="vertical" />
+
+                   <Spinner
+                       android:id="@+id/spinnerTo"
+                       android:layout_width="138dp"
+                       android:layout_height="51dp"
+                       android:layout_marginStart="250dp"
+                       android:layout_marginTop="40dp"
+                       android:scrollbars="vertical" />
+
+                   <ImageView
+                       android:id="@+id/imageView"
+                       android:layout_width="80dp"
+                       android:layout_height="80dp"
+                       android:layout_marginStart="170dp"
+                       android:layout_marginTop="60dp"
+                       app:srcCompat="@drawable/exchange_icon" />
+
+                   <TextView
+                       android:id="@+id/textViewTo"
+                       android:layout_width="120dp"
+                       android:layout_height="50dp"
+                       android:layout_marginStart="250dp"
+                       android:layout_marginTop="150dp"
+                       android:background="#DBDFEA"
+                       android:textAlignment="center"
+                       android:textColor="#0B0A0A"
+                       android:textSize="24sp" />
+
+                   <EditText
+                       android:id="@+id/editTextNumberDecimal"
+                       android:layout_width="135dp"
+                       android:layout_height="52dp"
+                       android:layout_marginStart="50dp"
+                       android:layout_marginTop="150dp"
+                       android:inputType="numberDecimal"
+                       android:textAlignment="center"
+                       android:textSize="24sp"
+                       android:textStyle="bold" />
+
+               </androidx.cardview.widget.CardView>
+
+           </androidx.constraintlayout.widget.ConstraintLayout>
+
+       </FrameLayout>
+    </RelativeLayout>
+</LinearLayout>

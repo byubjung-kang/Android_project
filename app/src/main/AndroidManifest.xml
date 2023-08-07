@@ -42,6 +42,9 @@
             android:name=".Theme.CurrencyConverter"
             android:exported="false" />
         <activity
+            android:name=".Theme.CurrencyConverterActivity"
+            android:exported="false"/>
+        <activity
             android:name=".Theme.MainActivity"
             android:exported="true">
             <intent-filter>

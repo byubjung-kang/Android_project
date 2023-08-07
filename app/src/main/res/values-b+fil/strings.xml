@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <string name="app_name">Konbert</string>
+    <string name="help">Tulong</string>
+    <string name="delete">Burahin</string>
+    <string name="aviation">Salansan ng Tagasubaybay ng Eroplano</string>
+    <string name="trivia">Tribyang Tanong</string>
+    <string name="bear">Tagabuo ng Larawan ng Oso</string>
+    <string name="convert_button">Konbert</string>
+    <string name="from">Konbert Mula sa</string>
+    <string name="to">Konbert Papunta sa</string>
+    <string name="enter_amount">Ipasok ang Halaga</string>
+    <string name="save_button">Isilid</string>
+    <string name="save_button2">Ipakita lahat</string>
+    <string name="undo">I-Undo</string>
+    <string name="delete_confirmation_message">Gusto mo bang burahin ang konbersyon na ito?</string>
+    <string name="delete_confirmation_title">Kumpirmasyon ng Pagbura</string>
+    <string name="no">Hindi</string>
+    <string name="yes">Oo</string>
+
+    <!-- Translations for dialog messages and instructions -->
+    <string name="help_dialog_title">Tulong sa Pagsasalin ng Pera</string>
+    <string name="help_dialog_message">Mga Tagubilin sa paggamit ng Pagsasalin ng Pera:\n\n
+    1. Ipasok ang halaga sa larangan ng \'Mula sa\' na pera.\n
+    2. Pumili ng pera sa dropdown menu ng \'Mula sa\'.\n
+    3. Pumili ng pera sa dropdown menu ng \'Papunta sa\'.\n
+    4. Tapikin ang button na \'Konbert\' upang makita ang kinalabasang halaga.\n
+    5. Para sa kasaysayan ng mga konbersyon, tapikin ang button na \'Kasaysayan\'.</string>
+</resources>
