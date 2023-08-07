@@ -593,5 +593,6 @@ public class CurrencyConverterActivity extends AppCompatActivity {
             }
         }
         return null;
+
     }
 }
