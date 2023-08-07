@@ -45,6 +45,7 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 import MobileApplication.Group.R;
+import MobileApplication.Group.Theme.BearImageGenerator.BearImageGenerator;
 import MobileApplication.Group.Theme.CurrencyConverter.ConversionDetailsFragment;
 import MobileApplication.Group.Theme.CurrencyConverter.CurrencyViewModel;
 import MobileApplication.Group.Theme.Data.ConversionHistory;
@@ -245,14 +246,14 @@ public class CurrencyConverterActivity extends AppCompatActivity {
                                     Toast.makeText(CurrencyConverterActivity.this, "Conversion rate: 1.00 is to 1.00", Toast.LENGTH_SHORT).show();
                                 } else if (clickedCountryTo.equals("CAD")) {
                                     JSONObject cadRates = rates.getJSONObject("CAD");
-                                    double conversionRateCad = cadRates.getDouble("rate_for_amount");
+                                    double conversionRateCad = cadRates.getDouble("rate");
                                     double convertedValueCad = amount * conversionRateCad;
                                     String formattedAmountCad = String.format("%.2f", convertedValueCad);
                                     convertedAmount.setText(formattedAmountCad);
                                     Toast.makeText(CurrencyConverterActivity.this, "CAD Rate: " + cadRates, Toast.LENGTH_SHORT).show();
                                 } else if (clickedCountryTo.equals("AUD")) {
                                     JSONObject audRates = rates.getJSONObject("AUD");
-                                    double conversionRateAud = audRates.getDouble("rate_for_amount");
+                                    double conversionRateAud = audRates.getDouble("rate");
                                     double convertedValueAud = amount * conversionRateAud;
                                     String formattedAmountAud = String.format("%.2f", convertedValueAud);
                                     convertedAmount.setText(formattedAmountAud);
@@ -366,7 +367,7 @@ public class CurrencyConverterActivity extends AppCompatActivity {
      */
     @Override
         public boolean onCreateOptionsMenu(Menu menu) {
-            getMenuInflater().inflate(R.menu.my_menu, menu);
+            getMenuInflater().inflate(R.menu.my_menu3, menu);
             return true;
         }
 

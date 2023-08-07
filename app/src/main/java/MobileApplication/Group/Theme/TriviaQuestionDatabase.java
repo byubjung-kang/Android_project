@@ -92,7 +92,7 @@ public class TriviaQuestionDatabase extends AppCompatActivity {
 
 
         }else if( item.getItemId() == R.id.t_item2 ) {
-            Intent intent = new Intent(TriviaQuestionDatabase.this, CurrencyConverter.class);
+            Intent intent = new Intent(TriviaQuestionDatabase.this, CurrencyConverterActivity.class);
             startActivity( intent );
 
         } else if ( item.getItemId() == R.id.t_item3 ) {

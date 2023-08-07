@@ -46,7 +46,8 @@ import Data.BearImageGeneratorData.BearImageDAO;
 import Data.BearImageGeneratorData.BearImageDatabase;
 import MobileApplication.Group.R;
 import MobileApplication.Group.Theme.AviationStackFlightTracker;
-import MobileApplication.Group.Theme.CurrencyConverter;
+
+import MobileApplication.Group.Theme.CurrencyConverterActivity;
 import MobileApplication.Group.Theme.MainActivity;
 import MobileApplication.Group.Theme.TriviaQuestionDatabase;
 import MobileApplication.Group.databinding.BearImageCardBinding;
@@ -325,7 +326,7 @@ public class BearImageGenerator extends AppCompatActivity {
                     .create().show();
 
         } else if( item.getItemId() == R.id.currency ) {
-            Intent intent = new Intent(BearImageGenerator.this, CurrencyConverter.class);
+            Intent intent = new Intent(BearImageGenerator.this, CurrencyConverterActivity.class);
             startActivity(intent);
         } else if( item.getItemId() == R.id.question ) {
             Intent intent = new Intent(BearImageGenerator.this, TriviaQuestionDatabase.class);
@@ -349,7 +350,7 @@ public class BearImageGenerator extends AppCompatActivity {
         super.onCreateOptionsMenu(menu);
 
         //inflate the menu
-        getMenuInflater().inflate( R.menu.my_menu, menu);
+        getMenuInflater().inflate( R.menu.my_menu4, menu);
 
         return true;
     }
