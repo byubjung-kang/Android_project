@@ -32,9 +32,6 @@
             android:name=".Theme.TriviaQuestionRank"
             android:exported="false" />
         <activity
-            android:name=".Theme.TriviaQuestionDatabase3"
-            android:exported="false" />
-        <activity
             android:name=".Theme.TriviaQuestionDatabase2"
             android:exported="false" />
         <activity
@@ -45,9 +42,6 @@
             android:exported="false" />
         <activity
             android:name=".Theme.TriviaQuestionDatabase"
-            android:exported="false" />
-        <activity
-            android:name=".Theme.CurrencyConverter"
             android:exported="false" />
         <activity
             android:name=".Theme.CurrencyConverterActivity"
