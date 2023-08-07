@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import MobileApplication.Group.R;
+import MobileApplication.Group.Theme.BearImageGenerator.BearImageGenerator;
 import MobileApplication.Group.databinding.ActivityTriviaQuestionDatabaseBinding;
 
 /**
@@ -116,7 +117,7 @@ public class TriviaQuestionDatabase extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
-        getMenuInflater().inflate(R.menu.my_menu, menu);
+        getMenuInflater().inflate(R.menu.my_menu2, menu);
         return true;
     }
 
