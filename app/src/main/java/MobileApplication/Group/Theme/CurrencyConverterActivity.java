@@ -160,7 +160,6 @@ public class CurrencyConverterActivity extends AppCompatActivity {
                     // Conversion already exists in the list
                     Toast.makeText(CurrencyConverterActivity.this, "Conversion already saved.", Toast.LENGTH_SHORT).show();
                 }
-                saveConversionsToSharedPreferences(conversions);
             }
         });
 
@@ -537,23 +536,6 @@ public class CurrencyConverterActivity extends AppCompatActivity {
 
         builder.create().show();
     }
-    /**
-     * Converts the list of ConversionHistory objects to a JSON string and saves it to
-     * SharedPreferences under the key "SavedConversions".
-     * @param conversions The ArrayList of ConversionHistory objects to be saved as JSON.
-     */
-    private void saveConversionsToSharedPreferences(ArrayList<ConversionHistory> conversions) {
-        // Convert the list of conversions to a JSON string
-        Gson gson = new Gson();
-        String json = gson.toJson(conversions);
-
-        // Save the JSON string to SharedPreferences
-        SharedPreferences prefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putString("SavedConversions", json);
-        editor.apply();
-    }
-
     /**
      * Loads the saved conversions from SharedPreferences and converts the JSON string back
      * to an ArrayList of ConversionHistory objects.

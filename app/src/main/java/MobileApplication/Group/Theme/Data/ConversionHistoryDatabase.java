@@ -6,7 +6,7 @@ import androidx.room.RoomDatabase;
 /**
  * Represents the Room Database for storing conversion history.
  * This class is annotated with @Database, specifying the list of entities
- * and the version number of the database schema.
+ * and the version number of the database schema1
  */
 @Database(entities ={ConversionHistory.class}, version=1)
 public abstract class ConversionHistoryDatabase extends RoomDatabase {
