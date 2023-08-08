@@ -77,7 +77,9 @@ public class BearImageGenerator extends AppCompatActivity {
         //This part goes at the top of the onCreate function:
         queue = Volley.newRequestQueue(this);
 
-        BearImageDatabase db = Room.databaseBuilder(getApplicationContext(), BearImageDatabase.class, "database-name").build();
+        BearImageDatabase db = Room.databaseBuilder(getApplicationContext(),
+                BearImageDatabase.class, " BearImaage-database")
+                .build();
         BearImageDAO mDAO = db.cmDAO();
 
         //        ArrayList<String> messages = new ArrayList<>();

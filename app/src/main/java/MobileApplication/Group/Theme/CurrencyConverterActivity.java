@@ -120,7 +120,7 @@ public class CurrencyConverterActivity extends AppCompatActivity {
         Toolbar theToolbar = findViewById(R.id.myToolbar);
         setSupportActionBar(theToolbar);
 
-        ConversionHistoryDatabase db = Room.databaseBuilder(getApplicationContext(), ConversionHistoryDatabase.class, "database-name").build();
+        ConversionHistoryDatabase db = Room.databaseBuilder(getApplicationContext(), ConversionHistoryDatabase.class, "conversions-database").build();
         myDAO = db.chDAO();
 
         listCountry();
