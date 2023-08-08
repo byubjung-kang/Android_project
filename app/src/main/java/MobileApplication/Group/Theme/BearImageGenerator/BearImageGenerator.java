@@ -78,7 +78,7 @@ public class BearImageGenerator extends AppCompatActivity {
         queue = Volley.newRequestQueue(this);
 
         BearImageDatabase db = Room.databaseBuilder(getApplicationContext(),
-                BearImageDatabase.class, " BearImaage-database")
+                BearImageDatabase.class, "BearImaage-database")
                 .build();
         BearImageDAO mDAO = db.cmDAO();
 
@@ -282,7 +282,7 @@ public class BearImageGenerator extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         super.onOptionsItemSelected(item);
 
-        BearImageDatabase db = Room.databaseBuilder(getApplicationContext(), BearImageDatabase.class, "database-name").build();
+        BearImageDatabase db = Room.databaseBuilder(getApplicationContext(), BearImageDatabase.class, "BearImaage-database").build();
         BearImageDAO mDAO = db.cmDAO();
         BearImageViewModel chatModel ;
         chatModel = new ViewModelProvider(this).get(BearImageViewModel.class);
