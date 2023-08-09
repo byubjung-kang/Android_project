@@ -1,8 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/item_1"
+        android:icon="@drawable/garbage"
+        android:title="Item 1"
+        app:showAsAction="always"/>
 
-
+    <item
+        android:id="@+id/item_2"
+        android:title="@string/item_2" />
+    <item
+        android:id="@+id/currency"
+        android:title="@string/currency"
+        android:icon="@drawable/currency"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/question"
+        android:title="@string/question"
+    android:icon="@drawable/question"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/flight"
+        android:title="@string/flight"
+        android:icon="@drawable/airplane"
+        app:showAsAction="always"/>
 
 </menu>
-
