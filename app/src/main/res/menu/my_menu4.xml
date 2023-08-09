@@ -13,13 +13,20 @@
         android:title="@string/item_2" />
     <item
         android:id="@+id/currency"
-        android:title="@string/currency" />
+        android:title="@string/currency"
+        android:icon="@drawable/currency1"
+        app:showAsAction="always"/>
     <item
         android:id="@+id/question"
-        android:title="@string/question" />
+        android:title="@string/question"
+        android:icon="@drawable/question"
+        app:showAsAction="always"/>
     <item
         android:id="@+id/flight"
-        android:title="@string/flight" />
+        android:title="@string/flight"
+        android:icon="@drawable/airplane"
+        app:showAsAction="always"/>
+
 
 </menu>
 
