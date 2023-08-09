@@ -40,6 +40,7 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 import MobileApplication.Group.R;
+import MobileApplication.Group.Theme.BearImageGenerator.BearImageGenerator;
 import MobileApplication.Group.databinding.ActivityFlightBinding;
 
 
@@ -97,7 +98,7 @@ public class AviationStackFlightTracker extends AppCompatActivity implements Fli
                 editor.putString("searchTerm", airportCode);
                 editor.apply();
 
-                String url = "http://api.aviationstack.com/v1/flights?access_key=9ad126b64d23dfc794eab0d96e9c3f6d&dep_iata=" +
+                String url = "http://api.aviationstack.com/v1/flights?access_key=b6a67d1a58cda6ac416d67c92fd31cc4&dep_iata=" +
                         URLEncoder.encode(airportCode, "UTF-8");
 
                 JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
@@ -208,7 +209,9 @@ public class AviationStackFlightTracker extends AppCompatActivity implements Fli
 
 
 
-    public boolean onOptionsItemSelected(MenuItem item) {
+
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        super.onOptionsItemSelected(item);
         int id = item.getItemId();
 
         if (id == R.id.action_help) {
@@ -220,10 +223,20 @@ public class AviationStackFlightTracker extends AppCompatActivity implements Fli
                     getString(R.string.about_snackbar), Snackbar.LENGTH_SHORT).show();
 //                    "Application version 1.0, created by Linh VO", Snackbar.LENGTH_SHORT).show();
             return true;
+        } else if( item.getItemId() == R.id.t_item2 ) {
+            Intent intent = new Intent(AviationStackFlightTracker.this, CurrencyConverterActivity.class);
+            startActivity(intent);
+        } else if( item.getItemId() == R.id.t_item1 ) {
+            Intent intent = new Intent(AviationStackFlightTracker.this, TriviaQuestionDatabase.class);
+            startActivity(intent);
+        } else if( item.getItemId() == R.id.t_item3 ) {
+            Intent intent = new Intent(AviationStackFlightTracker.this, BearImageGenerator.class);
+            startActivity(intent);
         }
-
-        return super.onOptionsItemSelected(item);
+        return true;
     }
+
+
 
 
 

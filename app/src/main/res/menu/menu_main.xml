@@ -11,6 +11,23 @@ xmlns:android="http://schemas.android.com/apk/res/android">
 <item
     android:id="@+id/item_about"
     android:title="About"
-android:icon="@drawable/flighticon"
-    app:showAsAction="always" />
+    android:icon="@drawable/flighticon"
+    app:showAsAction="never" />
+
+    <item
+        android:id="@+id/t_item1"
+        android:icon="@drawable/question"
+        app:showAsAction="always"
+        android:title="trivia" />
+    <item
+        android:id="@+id/t_item2"
+        android:icon="@drawable/currency_exchange"
+        app:showAsAction="always"
+        android:title="currency" />
+    <item
+        android:id="@+id/t_item3"
+        android:icon="@drawable/bear2"
+        app:showAsAction="always"
+        android:title="bear" />
+
 </menu>
