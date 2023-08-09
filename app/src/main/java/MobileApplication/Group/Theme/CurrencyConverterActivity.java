@@ -141,25 +141,30 @@ public class CurrencyConverterActivity extends AppCompatActivity {
 
                 // Check if the conversion is not already present in the list
                 ConversionHistory existingConversion = findExistingConversion(fromCurrency, toCurrency, amount, convertedAmount);
+
                 if (existingConversion == null) {
                     // Create a new ConversionHistory object and add it to the list
                     ConversionHistory conversion = new ConversionHistory(fromCurrency, toCurrency, amount, convertedAmount);
                     // Set id to 0 to indicate it's not yet saved
                     conversion.id = 0;
                     conversions.add(conversion);
+
                     // Notify the adapter of the data change
                     myAdapter.notifyDataSetChanged();
+
                     // Insert the conversion to the database using a background thread
                     Executor thread = Executors.newSingleThreadExecutor();
                     thread.execute(() -> {
                         long id = myDAO.insertConversion(conversion);
                         // Update the id with the returned value from the database
                         conversion.id = id;
+
                     });
                 } else {
                     // Conversion already exists in the list
                     Toast.makeText(CurrencyConverterActivity.this, "Conversion already saved.", Toast.LENGTH_SHORT).show();
                 }
+
             }
         });
 
@@ -168,6 +173,9 @@ public class CurrencyConverterActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Show only the saved conversions (from the 'conversions' list)
                 showSavedConversions();
+
+                // Save the updated conversions list to SharedPreferences
+                saveConversionsToSharedPreferences(conversions); // Add this line
             }
         });
 
@@ -485,9 +493,10 @@ public class CurrencyConverterActivity extends AppCompatActivity {
 
         // Loop through the conversions list and add only the saved conversions to the savedConversions list
         for (ConversionHistory conversion : conversions) {
-            if (conversion.id > 0) { // Assuming positive id indicates the conversion is saved
+            if (conversion.id > 0) {
                 savedConversions.add(conversion);
             }
+
         }
 
         // Create a list of conversion strings to display in the dialog
@@ -535,6 +544,23 @@ public class CurrencyConverterActivity extends AppCompatActivity {
         });
 
         builder.create().show();
+    }
+
+    /**
+     * Saves the list of saved conversions to SharedPreferences.
+     * @param conversions The list of ConversionHistory objects to be saved.
+     */
+    private void saveConversionsToSharedPreferences(ArrayList<ConversionHistory> conversions) {
+        SharedPreferences prefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        // Serialize the list of conversions to JSON using Gson
+        Gson gson = new Gson();
+        String json = gson.toJson(conversions);
+
+        // Save the JSON string in SharedPreferences
+        editor.putString("SavedConversions", json);
+        editor.apply();
     }
     /**
      * Loads the saved conversions from SharedPreferences and converts the JSON string back
